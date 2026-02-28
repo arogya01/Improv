@@ -1,0 +1,247 @@
+{
+  "id": "emotions",
+  "name": "Emotions and States",
+  "version": 1,
+  "items": [
+    {
+      "id": "emotions_01",
+      "text": "Relief that arrives one minute too late",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_02",
+      "text": "Confidence borrowed from someone else",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_03",
+      "text": "Jealousy disguised as helpful advice",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_04",
+      "text": "Pride in a completely useless skill",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_05",
+      "text": "Panic while pretending everything is under control",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_06",
+      "text": "Tenderness toward someone you should dislike",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_07",
+      "text": "Suspicion of a compliment that feels too precise",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_08",
+      "text": "Grief over something small but symbolic",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_09",
+      "text": "Excitement that cannot be shared yet",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_10",
+      "text": "Embarrassment that keeps getting interrupted",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_11",
+      "text": "Hope during a situation with terrible odds",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_12",
+      "text": "Awe at something everyone else finds normal",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_13",
+      "text": "Resentment from being called reliable again",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_14",
+      "text": "Guilt after enjoying the wrong thing",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_15",
+      "text": "Curiosity that becomes obsession in real time",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_16",
+      "text": "Calm that looks exactly like indifference",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_17",
+      "text": "Defensiveness before anyone accuses you",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_18",
+      "text": "Joy that feels suspiciously temporary",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_19",
+      "text": "Nostalgia for a place you never belonged",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_20",
+      "text": "Determination with no actual plan",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_21",
+      "text": "Disappointment delivered with a smile",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_22",
+      "text": "Fear of being replaced by a better version",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_23",
+      "text": "Delight in a petty victory",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_24",
+      "text": "Shame mixed with stubbornness",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_25",
+      "text": "Admiration you refuse to admit out loud",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_26",
+      "text": "Loneliness in the middle of a crowded room",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_27",
+      "text": "Urgency caused by a secret deadline",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_28",
+      "text": "Bitterness after being almost chosen",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_29",
+      "text": "Protectiveness toward someone who is stronger than you",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    },
+    {
+      "id": "emotions_30",
+      "text": "Wonder that turns into a bad idea",
+      "tags": [
+        "emotions",
+        "emotion"
+      ]
+    }
+  ]
+}

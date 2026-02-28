@@ -1,0 +1,247 @@
+{
+  "id": "objects",
+  "name": "Everyday Objects",
+  "version": 1,
+  "items": [
+    {
+      "id": "objects_01",
+      "text": "A cracked coffee mug that someone refuses to throw away",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_02",
+      "text": "A key that opens a door no longer in the building",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_03",
+      "text": "A backpack packed for a trip that never happened",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_04",
+      "text": "A flashlight with batteries almost dead",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_05",
+      "text": "A wedding ring found inside a cereal box",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_06",
+      "text": "A receipt from a store that closed ten years ago",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_07",
+      "text": "A squeaky office chair that everyone avoids",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_08",
+      "text": "A notebook with only the last page written on",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_09",
+      "text": "A lucky coin taped inside a phone case",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_10",
+      "text": "A broken umbrella on the first sunny day in weeks",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_11",
+      "text": "A blender used only for midnight experiments",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_12",
+      "text": "A framed photo turned face-down on a shelf",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_13",
+      "text": "A suitcase with one wheel missing",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_14",
+      "text": "A violin case with no violin inside",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_15",
+      "text": "A library card with someone else's name on it",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_16",
+      "text": "A candle that smells like a childhood memory",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_17",
+      "text": "A wristwatch that runs five minutes fast on purpose",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_18",
+      "text": "A remote control held together with rubber bands",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_19",
+      "text": "A plant mister used as a dramatic stage effect",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_20",
+      "text": "A pair of shoes still dusty from one unforgettable night",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_21",
+      "text": "A lunchbox packed with a mysterious apology note",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_22",
+      "text": "A deck of cards missing all the kings",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_23",
+      "text": "A snow globe from a city the owner has never visited",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_24",
+      "text": "A scarf knitted by someone who never finished anything else",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_25",
+      "text": "A toolbox containing one perfect golden screwdriver",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_26",
+      "text": "A thermos that keeps tea hot but makes coffee taste strange",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_27",
+      "text": "A trophy no one in the house remembers winning",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_28",
+      "text": "A map with one neighborhood circled in red",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_29",
+      "text": "A cassette tape labeled \"Do Not Play Yet\"",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    },
+    {
+      "id": "objects_30",
+      "text": "A bicycle bell that sounds like a tiny laugh",
+      "tags": [
+        "objects",
+        "thing"
+      ]
+    }
+  ]
+}

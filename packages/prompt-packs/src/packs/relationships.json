@@ -1,0 +1,247 @@
+{
+  "id": "relationships",
+  "name": "Relationship Dynamics",
+  "version": 1,
+  "items": [
+    {
+      "id": "relationships_01",
+      "text": "Two siblings competing to be the \"responsible one\"",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_02",
+      "text": "A mentor who now needs help from their former student",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_03",
+      "text": "Neighbors who only speak through passive-aggressive notes",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_04",
+      "text": "Best friends rehearsing a difficult conversation",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_05",
+      "text": "A parent and adult child pretending this is not an intervention",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_06",
+      "text": "Coworkers forced to share credit for one good idea",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_07",
+      "text": "An ex-couple who co-own a very stubborn dog",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_08",
+      "text": "Roommates deciding who has to move out first",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_09",
+      "text": "A teacher and student meeting years after a bad prediction",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_10",
+      "text": "A boss asking a favor that is definitely not work-related",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_11",
+      "text": "A bride and maid of honor after a surprising speech",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_12",
+      "text": "Teammates who disagree on what counts as cheating",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_13",
+      "text": "A landlord and tenant who know too much about each other",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_14",
+      "text": "A comedian and their heckler meeting in private afterward",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_15",
+      "text": "A doctor and patient who recognize each other from high school",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_16",
+      "text": "A journalist and source who no longer trust each other",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_17",
+      "text": "A coach and athlete negotiating one last chance",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_18",
+      "text": "A host and houseguest who has overstayed by two months",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_19",
+      "text": "A customer and barista who both remember the same awkward date",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_20",
+      "text": "A director and actor arguing over who the scene is really about",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_21",
+      "text": "A grandparent and grandchild keeping the same secret for different reasons",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_22",
+      "text": "A politician and speechwriter moments before a live debate",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_23",
+      "text": "A chef and sous-chef after sending out the wrong plate",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_24",
+      "text": "A musician and producer fighting over the final take",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_25",
+      "text": "A startup founder and investor on a \"casual\" check-in call",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_26",
+      "text": "A caretaker and patient who trade roles emotionally",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_27",
+      "text": "A witness and detective who are both hiding something",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_28",
+      "text": "A captain and first mate during a mutiny nobody has named yet",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_29",
+      "text": "A rival and rival who accidentally need each other to win",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    },
+    {
+      "id": "relationships_30",
+      "text": "A stranger and stranger who realize they were waiting for the same person",
+      "tags": [
+        "relationships",
+        "relationship"
+      ]
+    }
+  ]
+}

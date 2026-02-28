@@ -1,0 +1,247 @@
+{
+  "id": "places",
+  "name": "Places and Settings",
+  "version": 1,
+  "items": [
+    {
+      "id": "places_01",
+      "text": "An empty train platform right after the last train leaves",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_02",
+      "text": "A grocery store aisle during a power outage",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_03",
+      "text": "The backstage hallway of a school auditorium",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_04",
+      "text": "A dentist waiting room with only one chair left",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_05",
+      "text": "A rooftop during someone else's party downstairs",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_06",
+      "text": "A small-town bus station at sunrise",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_07",
+      "text": "A museum exhibit being installed overnight",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_08",
+      "text": "A shared office kitchen after a tense meeting",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_09",
+      "text": "A motel lobby with a broken neon sign",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_10",
+      "text": "A public park just before a storm rolls in",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_11",
+      "text": "A courthouse elevator where no one makes eye contact",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_12",
+      "text": "A neighborhood bar on trivia night finals",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_13",
+      "text": "A cramped recording booth with no air conditioning",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_14",
+      "text": "A wedding venue one hour before guests arrive",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_15",
+      "text": "A basement full of labeled but unopened boxes",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_16",
+      "text": "A hospital cafeteria at 2 a.m.",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_17",
+      "text": "A community center gym during a dance rehearsal",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_18",
+      "text": "A thrift store changing room with a stuck door",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_19",
+      "text": "A beach parking lot after everyone has gone home",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_20",
+      "text": "A radio station booth during a live apology segment",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_21",
+      "text": "A church basement during a folding-chair cleanup",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_22",
+      "text": "A tech startup lobby after the investors leave",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_23",
+      "text": "A tiny apartment kitchen during a family video call",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_24",
+      "text": "A mountain cabin with a weak internet signal",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_25",
+      "text": "A film set where the props look more expensive than the actors",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_26",
+      "text": "A courthouse steps photo-op moments before it falls apart",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_27",
+      "text": "A neighborhood laundromat in the quiet hour before dawn",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_28",
+      "text": "A hotel hallway with room service carts lined like checkpoints",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_29",
+      "text": "A school parking lot after everyone forgot the fundraiser",
+      "tags": [
+        "places",
+        "place"
+      ]
+    },
+    {
+      "id": "places_30",
+      "text": "A rehearsal room with mirrors covered for the day",
+      "tags": [
+        "places",
+        "place"
+      ]
+    }
+  ]
+}
