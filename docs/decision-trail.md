@@ -102,7 +102,74 @@ Offline-friendly, tiny implementation, no backend dependency for the daily chall
 ---
 
 ### Phase 1 deferred work (not implemented here)
-- Dexie repositories and IndexedDB blobs (Phase 2)
 - Media capture and timer integration (Phase 3)
 - PWA UI/screens (Phase 4)
 - Cloudflare Worker/D1/R2 APIs and auth (Phase 5+)
+
+---
+
+## 2026-02-28 - Phase 0 scaffold completion + Phase 2 Dexie implementation
+
+### Decision
+Complete missing app scaffolds before Dexie implementation.
+
+### Options considered
+- Start Dexie in isolation without app scaffolds
+- Complete only PWA scaffold and defer Worker scaffold
+- Complete both PWA and Worker scaffolds first
+
+### Chosen option
+Complete both PWA and Worker scaffolds first.
+
+### Why
+Keeps workspace shape aligned with the implementation plan and removes structural churn before persistence work.
+
+### Risks
+- Additional dependencies and scripts increase baseline maintenance.
+
+### Revisit trigger
+- If monorepo scripts become slow or difficult to maintain, split root scripts into package-only and app-only pipelines.
+
+---
+
+### Decision
+Use Dexie repositories with a normalized split: `recordings` metadata table, `blobs` table, and `syncQueue` table.
+
+### Options considered
+- Single table with embedded blob payloads
+- Separate metadata/blob/queue tables with repository interfaces
+- Browser file-system APIs in Phase 2
+
+### Chosen option
+Separate `recordings`, `blobs`, and `syncQueue` tables with typed repositories.
+
+### Why
+Matches Phase 2 acceptance criteria, keeps blob operations explicit, and supports queue-specific indexing and retries.
+
+### Risks
+- Multi-table operations require transactional discipline.
+- Future schema evolution must preserve queue and blob consistency.
+
+### Revisit trigger
+- If queue throughput, query complexity, or migration burden grows, evaluate an IndexedDB abstraction change or stronger schema migration tooling.
+
+---
+
+### Decision
+For local save flows, derive sync status with `createSyncState` and `transitionRecordingSyncStatus` before persistence.
+
+### Options considered
+- Write sync status directly from UI/auth flags
+- Centralize status derivation via existing core sync machine
+
+### Chosen option
+Use the core sync machine functions for status derivation.
+
+### Why
+Prevents drift between app persistence behavior and shared domain transition rules.
+
+### Risks
+- Service layer depends on strict validity of transition wiring.
+
+### Revisit trigger
+- If Worker finalize/delete flow introduces additional local statuses in Phase 5+, revisit queue item modeling and transition mapping in services.

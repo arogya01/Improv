@@ -6,7 +6,9 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc -p packages/core/tsconfig.json --noEmit && tsc -p packages/prompt-packs/tsconfig.json --noEmit"
+    "typecheck": "tsc -p packages/core/tsconfig.json --noEmit && tsc -p packages/prompt-packs/tsconfig.json --noEmit && pnpm --filter @improv/pwa typecheck && pnpm --filter @improv/api-worker typecheck",
+    "pwa:dev": "pnpm --filter @improv/pwa dev",
+    "worker:dev": "pnpm --filter @improv/api-worker dev"
   },
   "devDependencies": {
     "@types/node": "^22.13.4",

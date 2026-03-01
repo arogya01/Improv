@@ -2,8 +2,8 @@
 
 ## Phase 0 - Bootstrap + Docs + Tooling
 - [x] Minimal bootstrap executed to unblock Phase 1 package/test work
-- [ ] Full PWA app scaffold
-- [ ] Cloudflare Worker scaffold
+- [x] Full PWA app scaffold
+- [x] Cloudflare Worker scaffold
 
 ## Phase 1 - Core Domain + Prompt Engine
 - Status: Complete (unit tests passing, typecheck passing)
@@ -18,8 +18,11 @@
 - [x] Unit tests for core and prompt packs
 - [x] Phase 1 documentation updates
 
-## Phase 2+ (Deferred)
-- [ ] Dexie local persistence
+## Phase 2 - Local Persistence
+- Status: Complete (Dexie repositories + service integration + tests landed)
+- [x] Dexie local persistence
+
+## Phase 3+ (Deferred)
 - [ ] Media capture + timer integration
 - [ ] PWA UI/screens
 - [ ] Cloudflare Worker/D1/R2 sync/auth
