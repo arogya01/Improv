@@ -1,19 +1,5 @@
-import { Hono } from "hono";
+import { createApp } from "./app";
 
-type Env = {
-  Bindings: {};
-};
-
-const app = new Hono<Env>();
-
-app.get("/health", (context) => {
-  return context.json(
-    {
-      ok: true,
-      service: "api-worker"
-    },
-    200
-  );
-});
+const app = createApp();
 
 export default app;
