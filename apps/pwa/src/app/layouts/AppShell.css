@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  /* Support for standalone native mobile setups */
   height: 100dvh;
   background: var(--bg-gradient);
   font-family: var(--font-ui);
@@ -15,85 +14,79 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 var(--space-4);
-  background: rgba(255, 255, 255, 0.8);
+  background: color-mix(in srgb, var(--bg-primary) 82%, transparent);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid color-mix(in srgb, var(--ink-900) 8%, transparent);
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 30;
+  transition: height 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s;
 }
 
-@media (prefers-color-scheme: dark) {
-  .app-header {
-    background: rgba(15, 23, 42, 0.8);
-    border-color: rgba(255, 255, 255, 0.05);
-  }
+.app-header--compact {
+  height: 56px;
+  box-shadow: var(--shadow-sm);
 }
 
 .app-title {
   margin: 0;
   font-family: var(--font-headline);
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.26rem;
   letter-spacing: -0.02em;
+}
+
+.app-actions {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-700);
+  font-weight: 700;
 }
 
 .app-content-area {
   flex: 1;
   overflow-y: auto;
   position: relative;
-  /* Space for bottom nav */
-  padding-bottom: 80px;
+  padding-bottom: 84px;
+  scroll-behavior: smooth;
+}
+
+.app-content-area--immersive {
+  padding-bottom: 0;
 }
 
 .app-bottom-nav {
   position: fixed;
+  inset-inline: 0;
   bottom: 0;
-  left: 0;
-  right: 0;
   height: 64px;
-  /* accounts for safe area iPhone */
   padding-bottom: env(safe-area-inset-bottom);
-  background: var(--bg-primary);
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
   display: flex;
-  justify-content: space-around;
   align-items: stretch;
-  z-index: 20;
-}
-
-@media (prefers-color-scheme: dark) {
-  .app-bottom-nav {
-    border-color: rgba(255, 255, 255, 0.05);
-  }
+  justify-content: space-around;
+  border-top: 1px solid color-mix(in srgb, var(--ink-900) 8%, transparent);
+  background: color-mix(in srgb, var(--bg-primary) 90%, transparent);
+  backdrop-filter: blur(10px);
+  z-index: 40;
 }
 
 .nav-item {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  text-decoration: none;
+  display: grid;
+  place-content: center;
+  gap: 3px;
   color: var(--ink-700);
-  transition: color 0.2s;
-  position: relative;
+  text-decoration: none;
+  transition: color 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .nav-item--active {
   color: var(--cyan-600);
 }
 
-@media (prefers-color-scheme: dark) {
-  .nav-item--active {
-    color: var(--cyan-500);
-  }
-}
-
 .nav-icon {
-  font-size: 1.25rem;
-  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  font-size: 1.2rem;
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .nav-item:active .nav-icon {
@@ -101,37 +94,13 @@
 }
 
 .nav-label {
-  font-size: 0.65rem;
-  font-weight: 600;
+  font-size: 0.66rem;
+  font-weight: 700;
 }
 
-/* Page transitions mapping */
-.page-transition-enter {
-  opacity: 0;
-  transform: translateY(12px);
-}
-.page-transition-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition:
-    opacity 340ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 340ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-.page-transition-exit {
-  opacity: 1;
-}
-.page-transition-exit-active {
-  opacity: 0;
-  transform: translateY(-12px);
-  transition:
-    opacity 340ms cubic-bezier(0.4, 0, 0.2, 1),
-    transform 340ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@media (prefers-reduced-motion) {
-  .page-transition-enter-active,
-  .page-transition-exit-active {
-    transition: opacity 120ms linear;
-    transform: none;
+@media (prefers-color-scheme: dark) {
+  .app-header,
+  .app-bottom-nav {
+    border-color: color-mix(in srgb, white 10%, transparent);
   }
 }

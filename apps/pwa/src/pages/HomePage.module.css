@@ -1,0 +1,165 @@
+.page {
+  position: relative;
+  min-height: calc(100vh - 64px);
+  padding: var(--space-6) var(--space-4) calc(104px + env(safe-area-inset-bottom));
+  display: grid;
+  gap: var(--space-6);
+  overflow: hidden;
+}
+
+.bgMesh {
+  position: absolute;
+  inset: -25% -20% auto;
+  height: 70%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 20%, color-mix(in srgb, var(--cyan-500) 30%, transparent) 0, transparent 45%),
+    radial-gradient(circle at 75% 12%, color-mix(in srgb, var(--warm-accent) 22%, transparent) 0, transparent 38%),
+    radial-gradient(circle at 45% 88%, color-mix(in srgb, var(--teal-500) 18%, transparent) 0, transparent 46%);
+  filter: blur(24px);
+  opacity: 0.85;
+  animation: mesh-drift 16s ease-in-out infinite alternate;
+}
+
+.hero {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 860px);
+  margin: 0 auto;
+  display: grid;
+  gap: var(--space-4);
+}
+
+.kicker {
+  margin: 0;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--cyan-600);
+}
+
+.headline {
+  margin: 0;
+  font-family: var(--font-headline);
+  font-size: clamp(1.9rem, 5vw, 3.15rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  margin: 0;
+  width: min(100%, 56ch);
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--ink-700);
+}
+
+.heroReel {
+  margin-top: var(--space-2);
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.capabilityGrid {
+  width: min(100%, 980px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.capabilityCard {
+  min-height: 124px;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.capabilityCard h3 {
+  margin: 0;
+  font-family: var(--font-headline);
+  font-size: 1.05rem;
+}
+
+.capabilityCard p {
+  margin: 0;
+  color: var(--ink-700);
+  line-height: 1.45;
+}
+
+.howItWorks {
+  width: min(100%, 980px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.flowCard {
+  border: 1px solid color-mix(in srgb, var(--ink-900) 9%, transparent);
+  background: color-mix(in srgb, var(--bg-primary) 92%, transparent);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+
+.step {
+  font-family: var(--font-headline);
+  font-size: 0.75rem;
+  letter-spacing: 0.09em;
+  font-weight: 700;
+  color: var(--cyan-600);
+}
+
+.flowCard h4 {
+  margin: var(--space-2) 0 var(--space-1);
+  font-family: var(--font-headline);
+  font-size: 1.05rem;
+}
+
+.flowCard p {
+  margin: 0;
+  color: var(--ink-700);
+  line-height: 1.45;
+}
+
+.bottomCtaWrap {
+  position: sticky;
+  bottom: calc(64px + env(safe-area-inset-bottom) + var(--space-2));
+  z-index: 7;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.bottomCta {
+  pointer-events: auto;
+  width: min(100%, 320px);
+  backdrop-filter: blur(10px);
+}
+
+@keyframes mesh-drift {
+  from {
+    transform: translate3d(-2%, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(2%, -2%, 0) scale(1.04);
+  }
+}
+
+@media (max-width: 880px) {
+  .capabilityGrid,
+  .howItWorks {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bgMesh {
+    animation: none;
+  }
+}

@@ -1,74 +1,63 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+
 import {
   usePracticeSetup,
   useRecordingSession,
-  FrontendRecordingService,
+  FrontendRecordingService
 } from "../features/practice";
-// We need auth state and Library service for real app, mock it for now until we have context:
-import { LibraryService } from "../features/library/library-service";
-import { ImprovDatabase } from "../db/database";
+import { libraryService } from "../lib/client-services";
 import styles from "./PracticeSessionPage.module.css";
 
-// Temporary singleton for DB/Service until Context exists:
-const db = new ImprovDatabase();
-const libService = new LibraryService(db);
-const recordingService = new FrontendRecordingService(libService);
+const recordingService = new FrontendRecordingService(libraryService);
 
 export const PracticeSessionPage: React.FC = () => {
   const navigate = useNavigate();
   const { draft } = usePracticeSetup();
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // We start automatically when hitting this page if the user hit "Start Session"
   const { vm, startRecording, stopRecording, cancelRecording, getAdapter } =
     useRecordingSession({
       draft,
       recordingService,
-      authState: { status: "guest" }, // Using guest until Auth is implemented
+      authState: { status: "guest" },
       onSaved: () => {
-        // give it a second to show "Saved" state before navigating
-        setTimeout(() => navigate("/library"), 1500);
-      },
+        setTimeout(() => navigate("/library"), 1200);
+      }
     });
 
   const [hasStarted, setHasStarted] = useState(false);
 
   useEffect(() => {
-    if (!hasStarted && draft.mediaType) {
+    if (!hasStarted && draft.mediaType && draft.prompt) {
       setHasStarted(true);
       startRecording();
     }
-  }, [hasStarted, draft.mediaType, startRecording]);
+  }, [draft.mediaType, draft.prompt, hasStarted, startRecording]);
 
   useEffect(() => {
-    // Connect video stream if video mode
+    if (!draft.prompt || !draft.mediaType) {
+      navigate("/practice/setup", { replace: true });
+    }
+  }, [draft.mediaType, draft.prompt, navigate]);
+
+  useEffect(() => {
     if (draft.mediaType === "video" && videoRef.current) {
-      // get the stream from the adapter (a small hack to get raw stream)
-      // The media adapter in this version doesn't export `stream` publicly, but we can access `(adapter as any).stream`.
-      // Let's assume we can cast it
       const adapter = getAdapter();
-      const stream = (adapter as any).stream;
+      const stream = (adapter as unknown as { stream?: MediaStream }).stream;
       if (stream) {
         videoRef.current.srcObject = stream;
-        videoRef.current.muted = true; // prevent feedback loop locally
+        videoRef.current.muted = true;
       }
     }
-  }, [vm.status, draft.mediaType, getAdapter]);
+  }, [draft.mediaType, getAdapter, vm.status]);
 
   const handleCancel = () => {
     cancelRecording();
     navigate(-1);
   };
 
-  const handleStop = () => {
-    if (vm.status === "recording") {
-      stopRecording();
-    }
-  };
-
-  // Format timer
   const formatTime = (ms: number) => {
     const totalSeconds = Math.ceil(ms / 1000);
     const m = Math.floor(totalSeconds / 60);
@@ -91,14 +80,14 @@ export const PracticeSessionPage: React.FC = () => {
       </div>
 
       <AnimatePresence>
-        {draft.prompt && (
+        {draft.selectedTopic && (
           <motion.div
             className={styles.promptCard}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
           >
-            <p className={styles.promptText}>{draft.prompt.text}</p>
+            <p className={styles.promptText}>{draft.selectedTopic.text}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -126,10 +115,8 @@ export const PracticeSessionPage: React.FC = () => {
         <div className={timerClass}>{displayTime}</div>
 
         <button
-          className={`${styles.recordBtn} ${
-            vm.status === "recording" ? styles.recording : ""
-          }`}
-          onClick={handleStop}
+          className={`${styles.recordBtn} ${vm.status === "recording" ? styles.recording : ""}`}
+          onClick={stopRecording}
           disabled={vm.status !== "recording"}
           aria-label="Stop recording"
         >
@@ -139,15 +126,10 @@ export const PracticeSessionPage: React.FC = () => {
 
       {["stopping", "saving", "saved", "error"].includes(vm.status) && (
         <div className={styles.overlay}>
-          {vm.status !== "error" && vm.status !== "saved" && (
-            <div className={styles.spinner} />
-          )}
+          {vm.status !== "error" && vm.status !== "saved" && <div className={styles.spinner} />}
 
           {vm.status === "saved" && (
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-            >
+            <motion.div initial={{ scale: 0.82, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
               <svg
                 width="80"
                 height="80"
@@ -158,8 +140,8 @@ export const PracticeSessionPage: React.FC = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
-                <path d="M22 11.08V12a10 10 10 0 1 1-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
               </svg>
             </motion.div>
           )}
@@ -173,9 +155,7 @@ export const PracticeSessionPage: React.FC = () => {
 
           {vm.status === "error" && (
             <>
-              <p className={styles.errorText}>
-                {vm.lastErrorMessage || "Failed to save the recording."}
-              </p>
+              <p className={styles.errorText}>{vm.lastErrorMessage || "Failed to save the recording."}</p>
               <button className={styles.backBtn} onClick={() => navigate("/")}>
                 Return to Home
               </button>

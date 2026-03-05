@@ -172,6 +172,20 @@ export class LibraryService {
     return this.recordings.list(filters);
   }
 
+  async getRecording(recordingId: string): Promise<RecordingMeta | undefined> {
+    return this.recordings.getById(recordingId);
+  }
+
+  async getRecordingBlob(recordingId: string): Promise<Blob | undefined> {
+    const recording = await this.recordings.getById(recordingId);
+    if (!recording) {
+      return undefined;
+    }
+
+    const blobRecord = await this.blobs.getByKey(recording.localBlobKey);
+    return blobRecord?.blob;
+  }
+
   async setFavorite(recordingId: string, isFavorite: boolean, updatedAt: string): Promise<boolean> {
     return this.recordings.updateFavorite(recordingId, isFavorite, updatedAt);
   }

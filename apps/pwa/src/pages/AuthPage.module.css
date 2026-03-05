@@ -1,0 +1,22 @@
+.page {
+  min-height: calc(100vh - 64px);
+  padding: var(--space-6) var(--space-4);
+  display: grid;
+  place-items: center;
+}
+
+.card {
+  width: min(100%, 560px);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.card h2,
+.card p {
+  margin: 0;
+}
+
+.card p {
+  color: var(--ink-700);
+  line-height: 1.5;
+}
