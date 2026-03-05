@@ -1,0 +1,121 @@
+.primitive-bottom-sheet__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background-color: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  will-change: opacity, backdrop-filter;
+}
+
+.primitive-bottom-sheet__overlay.is-open {
+  animation: overlay-fade-in 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.primitive-bottom-sheet__overlay.is-closing {
+  animation: overlay-fade-out 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.primitive-bottom-sheet__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+  border-top-left-radius: var(--radius-xl);
+  border-top-right-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  will-change: transform;
+}
+
+.primitive-bottom-sheet__content.is-open {
+  animation: sheet-slide-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.primitive-bottom-sheet__content.is-closing {
+  animation: sheet-slide-down 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.primitive-bottom-sheet__drag-handle {
+  width: 100%;
+  padding: var(--space-3) 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+}
+
+.primitive-bottom-sheet__drag-handle:active {
+  cursor: grabbing;
+}
+
+.primitive-bottom-sheet__dragger {
+  width: 48px;
+  height: 5px;
+  border-radius: var(--radius-full);
+  background-color: var(--ink-100);
+}
+
+.primitive-bottom-sheet__header {
+  padding: 0 var(--space-6) var(--space-4);
+  text-align: center;
+}
+
+.primitive-bottom-sheet__title {
+  margin: 0;
+  font-family: var(--font-headline);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink-900);
+}
+
+.primitive-bottom-sheet__body {
+  padding: 0 var(--space-6) var(--space-8);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+@keyframes overlay-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes overlay-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes sheet-slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes sheet-slide-down {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .primitive-bottom-sheet__content.is-open,
+  .primitive-bottom-sheet__content.is-closing {
+    animation-duration: 0.12s;
+  }
+}

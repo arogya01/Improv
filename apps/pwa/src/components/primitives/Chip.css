@@ -1,0 +1,48 @@
+.primitive-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0.125rem 0.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.primitive-chip--default {
+  background: var(--ink-100);
+  color: var(--ink-700);
+}
+
+.primitive-chip--success {
+  background: color-mix(in srgb, var(--status-synced) 15%, transparent);
+  color: var(--status-synced);
+}
+
+.primitive-chip--warning {
+  background: color-mix(in srgb, var(--status-pending) 15%, transparent);
+  color: var(--status-pending);
+}
+
+.primitive-chip--error {
+  background: color-mix(in srgb, var(--status-error) 15%, transparent);
+  color: var(--status-error);
+}
+
+.primitive-chip--info {
+  background: color-mix(in srgb, var(--status-uploading) 15%, transparent);
+  color: var(--status-uploading);
+}
+
+.chip-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chip-icon svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}

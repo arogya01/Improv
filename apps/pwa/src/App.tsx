@@ -1,8 +1,14 @@
+import React from "react";
+import { RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { router } from "./app/router";
+
+const queryClient = new QueryClient();
+
 export function App(): JSX.Element {
   return (
-    <main className="app-shell">
-      <h1>Improv Practice</h1>
-      <p>Phase 2 scaffold is ready. Local persistence services are available.</p>
-    </main>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   );
 }

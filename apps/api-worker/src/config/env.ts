@@ -1,3 +1,5 @@
 export type AppEnv = {
-    Bindings: {};
+  Bindings: {
+    DB: D1Database;
+  };
 };

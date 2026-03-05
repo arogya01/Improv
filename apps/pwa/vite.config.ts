@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
+import path from "path";
 
 export default defineConfig({
   plugins: [
@@ -12,9 +13,15 @@ export default defineConfig({
         short_name: "Improv",
         start_url: "/",
         display: "standalone",
-        background_color: "#f4f1e8",
-        theme_color: "#0d5c63"
+        background_color: "#0f172a",
+        theme_color: "#0f172a"
       }
     })
-  ]
+  ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src")
+    }
+  }
 });
+

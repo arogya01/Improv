@@ -1,0 +1,67 @@
+:root {
+  /* Colors - Deep ink neutrals */
+  --ink-900: #0f172a;
+  --ink-800: #1e293b;
+  --ink-700: #334155;
+  --ink-100: #f1f5f9;
+  --ink-50: #f8fafc;
+
+  /* Accents - Electric cyan/teal & warm highlight */
+  --cyan-500: #06b6d4;
+  --cyan-600: #0891b2;
+  --teal-400: #2dd4bf;
+  --teal-500: #14b8a6;
+  --warm-accent: #f59e0b; /* Amber/warm */
+
+  /* Backgrounds */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+
+  /* Semantic Status Colors */
+  --status-pending: #f59e0b;
+  --status-uploading: #3b82f6;
+  --status-synced: #10b981;
+  --status-error: #ef4444;
+
+  /* Typography */
+  --font-ui: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-headline: "Space Grotesk", system-ui, sans-serif;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+
+  /* Radius */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    --ink-900: #f8fafc;
+    --ink-800: #f1f5f9;
+    --ink-700: #e2e8f0;
+    --ink-100: #1e293b;
+    --ink-50: #0f172a;
+  }
+}
