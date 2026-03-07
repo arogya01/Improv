@@ -1,34 +1,45 @@
 :root {
-  /* Colors - Deep ink neutrals */
-  --ink-900: #0f172a;
-  --ink-800: #1e293b;
-  --ink-700: #334155;
-  --ink-100: #f1f5f9;
-  --ink-50: #f8fafc;
+  --ink-900: #171310;
+  --ink-800: #2e2822;
+  --ink-700: #63584d;
+  --ink-100: #ddd0c0;
+  --ink-50: #fffaf2;
 
-  /* Accents - Electric cyan/teal & warm highlight */
-  --cyan-500: #06b6d4;
-  --cyan-600: #0891b2;
-  --teal-400: #2dd4bf;
-  --teal-500: #14b8a6;
-  --warm-accent: #f59e0b; /* Amber/warm */
+  --teal-600: #8acc58;
+  --teal-500: #a7f175;
+  --teal-400: #d0ffaf;
 
-  /* Backgrounds */
-  --bg-primary: #f8fafc;
-  --bg-secondary: #f1f5f9;
-  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  --cyan-600: #57b5bd;
+  --cyan-500: #83d9e1;
 
-  /* Semantic Status Colors */
-  --status-pending: #f59e0b;
-  --status-uploading: #3b82f6;
-  --status-synced: #10b981;
-  --status-error: #ef4444;
+  --warm-accent: #d96770;
+  --danger: #ff7a68;
 
-  /* Typography */
-  --font-ui: "Manrope", system-ui, sans-serif;
-  --font-headline: "Sora", system-ui, sans-serif;
+  --accent-lime: var(--teal-500);
+  --accent-cyan: var(--cyan-500);
+  --accent-coral: var(--warm-accent);
 
-  /* Spacing */
+  --bg-primary: #f5efe5;
+  --bg-secondary: #e6dccd;
+  --bg-gradient:
+    radial-gradient(circle at top, color-mix(in srgb, var(--accent-cyan) 12%, transparent) 0, transparent 32%),
+    linear-gradient(180deg, #fbf6ef 0%, #efe4d6 100%);
+
+  --surface-raised: rgba(255, 250, 242, 0.88);
+  --surface-muted: rgba(243, 233, 219, 0.94);
+  --line-soft: rgba(23, 19, 16, 0.1);
+  --line-strong: rgba(23, 19, 16, 0.16);
+
+  --status-pending: var(--warm-accent);
+  --status-uploading: var(--cyan-500);
+  --status-synced: var(--teal-500);
+  --status-error: var(--danger);
+
+  --font-ui: "Instrument Sans", system-ui, sans-serif;
+  --font-headline: "Fraunces", Georgia, serif;
+  --font-body: "Instrument Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -36,32 +47,67 @@
   --space-6: 1.5rem;
   --space-8: 2rem;
   --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
 
-  /* Radius */
-  --radius-sm: 10px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
   --radius-full: 9999px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg:
-    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl:
-    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --border-thick: 1px solid var(--line-strong);
+  --border-medium: 1px solid var(--line-soft);
+  --border-thin: 1px solid color-mix(in srgb, var(--ink-900) 8%, transparent);
+
+  --shadow-sm: 0 10px 30px rgba(18, 12, 8, 0.06);
+  --shadow-md: 0 18px 40px rgba(18, 12, 8, 0.1);
+  --shadow-lg: 0 28px 60px rgba(18, 12, 8, 0.14);
+  --shadow-xl: 0 48px 88px rgba(18, 12, 8, 0.2);
+
+  --shadow-active: 0 8px 22px rgba(18, 12, 8, 0.08);
+  --translate-active: translateY(1px) scale(0.99);
+  --shadow-active-md: 0 12px 30px rgba(18, 12, 8, 0.12);
+  --translate-active-md: translateY(2px) scale(0.98);
+
+  --glass-bg: var(--surface-raised);
+  --glass-blur: blur(0px);
+  --glass-border: var(--line-soft);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-primary: #0f172a;
-    --bg-secondary: #1e293b;
-    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    --ink-900: #f8fafc;
-    --ink-800: #f1f5f9;
-    --ink-700: #e2e8f0;
-    --ink-100: #1e293b;
-    --ink-50: #0f172a;
+    --bg-primary: #060606;
+    --bg-secondary: #141210;
+    --bg-gradient:
+      radial-gradient(circle at top, color-mix(in srgb, var(--accent-cyan) 12%, transparent) 0, transparent 28%),
+      radial-gradient(circle at bottom, color-mix(in srgb, var(--accent-coral) 10%, transparent) 0, transparent 24%),
+      linear-gradient(180deg, #050505 0%, #120f0d 100%);
+    --ink-900: #f7f1e7;
+    --ink-800: #ddd1c2;
+    --ink-700: #a79d91;
+    --ink-100: #26211d;
+    --ink-50: #0f0d0b;
+
+    --surface-raised: rgba(24, 21, 19, 0.94);
+    --surface-muted: rgba(33, 29, 29, 0.98);
+    --line-soft: rgba(255, 255, 255, 0.1);
+    --line-strong: rgba(255, 255, 255, 0.18);
+
+    --border-thick: 1px solid var(--line-strong);
+    --border-medium: 1px solid var(--line-soft);
+    --border-thin: 1px solid rgba(255, 255, 255, 0.08);
+
+    --shadow-sm: 0 12px 30px rgba(0, 0, 0, 0.28);
+    --shadow-md: 0 18px 40px rgba(0, 0, 0, 0.34);
+    --shadow-lg: 0 28px 60px rgba(0, 0, 0, 0.42);
+    --shadow-xl: 0 42px 88px rgba(0, 0, 0, 0.5);
+
+    --shadow-active: 0 8px 20px rgba(0, 0, 0, 0.28);
+    --shadow-active-md: 0 12px 28px rgba(0, 0, 0, 0.34);
+
+    --glass-bg: var(--surface-raised);
+    --glass-border: var(--line-soft);
   }
 }

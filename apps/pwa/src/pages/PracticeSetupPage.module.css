@@ -1,27 +1,51 @@
 .container {
-  min-height: calc(100vh - 64px);
-  padding: var(--space-6) var(--space-4) calc(var(--space-12) + 72px);
-  background:
-    radial-gradient(circle at 12% 20%, color-mix(in srgb, var(--cyan-500) 18%, transparent) 0, transparent 40%),
-    radial-gradient(circle at 88% 6%, color-mix(in srgb, var(--warm-accent) 16%, transparent) 0, transparent 36%),
-    var(--bg-gradient);
+  min-height: calc(100vh - 76px);
+  padding: clamp(2rem, 4vw, 3rem) var(--space-4) calc(var(--space-12) + 92px);
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before,
+.container::after {
+  content: "";
+  position: absolute;
+  inset: auto;
+  width: 40vw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.container::before {
+  top: -12%;
+  left: -10%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent-cyan) 18%, transparent) 0, transparent 64%);
+}
+
+.container::after {
+  right: -14%;
+  bottom: -10%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent-coral) 16%, transparent) 0, transparent 64%);
 }
 
 .card {
-  width: min(100%, 560px);
+  position: relative;
+  z-index: 1;
+  width: min(100%, 640px);
   margin: 0 auto;
+  background: color-mix(in srgb, var(--surface-muted) 96%, transparent);
   border-radius: var(--radius-xl);
-  border: 1px solid color-mix(in srgb, var(--ink-900) 8%, transparent);
-  background: color-mix(in srgb, var(--bg-primary) 94%, transparent);
-  box-shadow: var(--shadow-xl);
-  padding: var(--space-6);
+  border: 1px solid var(--line-soft);
+  box-shadow: var(--shadow-lg);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
   display: grid;
-  gap: var(--space-5);
+  gap: var(--space-6);
 }
 
 .headerRow {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: var(--space-3);
 }
@@ -29,31 +53,47 @@
 .title {
   margin: 0;
   font-family: var(--font-headline);
-  font-size: clamp(1.4rem, 2vw + 1rem, 2rem);
-  letter-spacing: -0.02em;
+  font-size: clamp(2.4rem, 6vw, 3.7rem);
+  letter-spacing: -0.05em;
+  line-height: 0.96;
+  color: var(--ink-900);
 }
 
 .topicCard {
   border-radius: var(--radius-lg);
-  border: 1px solid color-mix(in srgb, var(--ink-900) 9%, transparent);
-  background: color-mix(in srgb, var(--bg-secondary) 90%, transparent);
-  padding: var(--space-4);
+  border: 1px solid var(--line-soft);
+  background: color-mix(in srgb, var(--surface-raised) 96%, transparent);
+  padding: var(--space-6);
   box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.topicCard::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-lime), color-mix(in srgb, var(--accent-cyan) 88%, transparent));
 }
 
 .topicMeta {
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ink-700);
+  color: var(--accent-lime);
   font-weight: 700;
+  font-family: var(--font-ui);
 }
 
 .topicText {
-  margin: var(--space-2) 0 var(--space-4);
+  margin: var(--space-3) 0 var(--space-5);
   font-family: var(--font-headline);
-  font-size: 1.1rem;
-  line-height: 1.3;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  line-height: 1.15;
+  font-weight: 600;
+  color: var(--ink-900);
 }
 
 .topicActions {
@@ -63,82 +103,106 @@
 
 .formGroup {
   display: grid;
-  gap: var(--space-2);
+  gap: var(--space-3);
 }
 
 .label {
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   color: var(--ink-700);
+  font-family: var(--font-ui);
 }
 
 .toggleGroup {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-2);
-  background: color-mix(in srgb, var(--bg-secondary) 86%, transparent);
+  gap: 6px;
+  padding: 6px;
+  background: color-mix(in srgb, var(--surface-raised) 96%, transparent);
   border-radius: var(--radius-lg);
-  padding: var(--space-1);
+  border: 1px solid var(--line-soft);
 }
 
 .toggleBtn {
-  height: 2.8rem;
+  min-height: 3.1rem;
   border: 0;
   border-radius: var(--radius-md);
   font-family: var(--font-ui);
-  font-size: 0.95rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 600;
   color: var(--ink-700);
   background: transparent;
   cursor: pointer;
-  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    background 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .toggleBtn.active {
-  color: var(--cyan-600);
-  background: var(--bg-primary);
+  color: #10100f;
+  background: var(--accent-lime);
   box-shadow: var(--shadow-sm);
 }
 
 .startBtn {
   width: 100%;
-  height: 3.25rem;
-  border: 0;
-  border-radius: var(--radius-xl);
-  background: linear-gradient(96deg, #0f172a 0%, #1f4f73 55%, #0891b2 100%);
-  color: #ecfeff;
-  font-family: var(--font-headline);
-  font-size: 1.03rem;
+  min-height: 4rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid color-mix(in srgb, var(--accent-lime) 80%, black);
+  background: linear-gradient(90deg, var(--accent-lime) 0%, color-mix(in srgb, var(--accent-cyan) 90%, black 6%) 100%);
+  color: #10100f;
+  font-family: var(--font-ui);
+  font-size: 1.06rem;
   font-weight: 700;
   letter-spacing: 0.01em;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
-  box-shadow: 0 12px 26px color-mix(in srgb, var(--cyan-600) 34%, transparent);
+  gap: var(--space-3);
+  box-shadow: var(--shadow-md);
+  transition:
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.startBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-active-md);
+}
+
+.startBtn:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 .startBtn:disabled {
-  opacity: 0.6;
+  background: color-mix(in srgb, var(--surface-raised) 96%, transparent);
+  color: var(--ink-700);
   cursor: not-allowed;
+  box-shadow: none;
+  border: 1px solid var(--line-soft);
 }
 
 .sheetBody {
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-6);
 }
 
 .sheetButtons {
   display: flex;
   justify-content: space-between;
-  gap: var(--space-2);
+  gap: var(--space-4);
 }
 
-@media (max-width: 520px) {
+@media (max-width: 640px) {
   .card {
-    padding: var(--space-4);
+    padding: var(--space-5);
+  }
+
+  .sheetButtons {
+    flex-direction: column;
   }
 }

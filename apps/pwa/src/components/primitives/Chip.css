@@ -2,38 +2,46 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-1);
-  padding: 0.125rem 0.5rem;
+  padding: 0.28rem 0.6rem;
   font-family: var(--font-ui);
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.68rem;
+  font-weight: 700;
   border-radius: var(--radius-full);
   line-height: 1.25;
   white-space: nowrap;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
 }
 
 .primitive-chip--default {
-  background: var(--ink-100);
+  background: color-mix(in srgb, var(--surface-raised) 94%, transparent);
   color: var(--ink-700);
+  border-color: var(--line-soft);
 }
 
 .primitive-chip--success {
-  background: color-mix(in srgb, var(--status-synced) 15%, transparent);
+  background: color-mix(in srgb, var(--status-synced) 18%, transparent);
   color: var(--status-synced);
+  border-color: color-mix(in srgb, var(--status-synced) 24%, transparent);
 }
 
 .primitive-chip--warning {
-  background: color-mix(in srgb, var(--status-pending) 15%, transparent);
+  background: color-mix(in srgb, var(--status-pending) 18%, transparent);
   color: var(--status-pending);
+  border-color: color-mix(in srgb, var(--status-pending) 24%, transparent);
 }
 
 .primitive-chip--error {
-  background: color-mix(in srgb, var(--status-error) 15%, transparent);
+  background: color-mix(in srgb, var(--status-error) 18%, transparent);
   color: var(--status-error);
+  border-color: color-mix(in srgb, var(--status-error) 24%, transparent);
 }
 
 .primitive-chip--info {
-  background: color-mix(in srgb, var(--status-uploading) 15%, transparent);
+  background: color-mix(in srgb, var(--status-uploading) 18%, transparent);
   color: var(--status-uploading);
+  border-color: color-mix(in srgb, var(--status-uploading) 24%, transparent);
 }
 
 .chip-icon {

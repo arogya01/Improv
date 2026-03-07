@@ -8,46 +8,61 @@
   color: var(--ink-900);
 }
 
+.app-shell-container--immersive {
+  background:
+    radial-gradient(circle at top, color-mix(in srgb, var(--accent-cyan) 16%, transparent) 0, transparent 34%),
+    var(--bg-gradient);
+}
+
 .app-header {
-  height: 64px;
+  height: 76px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 var(--space-4);
-  background: color-mix(in srgb, var(--bg-primary) 82%, transparent);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid color-mix(in srgb, var(--ink-900) 8%, transparent);
+  padding: 0 var(--space-6);
+  background: color-mix(in srgb, var(--surface-muted) 92%, transparent);
+  border-bottom: 1px solid var(--line-soft);
   position: sticky;
   top: 0;
   z-index: 30;
-  transition: height 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s;
-}
-
-.app-header--compact {
-  height: 56px;
   box-shadow: var(--shadow-sm);
 }
 
-.app-title {
-  margin: 0;
+.app-brand {
+  color: var(--ink-900);
+  text-decoration: none;
   font-family: var(--font-headline);
-  font-size: 1.26rem;
-  letter-spacing: -0.02em;
+  font-size: 1.55rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
 }
 
-.app-actions {
-  font-size: 0.72rem;
+.app-header-copy {
+  display: grid;
+  justify-items: end;
+  gap: 2px;
+}
+
+.app-header-kicker {
+  font-size: 0.7rem;
+  line-height: 1;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ink-700);
+  letter-spacing: 0.12em;
+  color: var(--accent-lime);
   font-weight: 700;
+}
+
+.app-header-label {
+  font-size: 0.95rem;
+  color: var(--ink-700);
+  font-weight: 500;
 }
 
 .app-content-area {
   flex: 1;
   overflow-y: auto;
   position: relative;
-  padding-bottom: 84px;
+  padding-bottom: 88px;
   scroll-behavior: smooth;
 }
 
@@ -57,16 +72,17 @@
 
 .app-bottom-nav {
   position: fixed;
-  inset-inline: 0;
-  bottom: 0;
-  height: 64px;
+  inset-inline: var(--space-4);
+  bottom: var(--space-3);
+  height: 68px;
   padding-bottom: env(safe-area-inset-bottom);
   display: flex;
   align-items: stretch;
   justify-content: space-around;
-  border-top: 1px solid color-mix(in srgb, var(--ink-900) 8%, transparent);
-  background: color-mix(in srgb, var(--bg-primary) 90%, transparent);
-  backdrop-filter: blur(10px);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-xl);
+  background: color-mix(in srgb, var(--surface-muted) 96%, transparent);
+  box-shadow: var(--shadow-lg);
   z-index: 40;
 }
 
@@ -74,33 +90,51 @@
   flex: 1;
   display: grid;
   place-content: center;
-  gap: 3px;
+  gap: 6px;
   color: var(--ink-700);
   text-decoration: none;
-  transition: color 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    color 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  font-family: var(--font-body);
 }
 
 .nav-item--active {
-  color: var(--cyan-600);
+  color: var(--ink-900);
 }
 
-.nav-icon {
-  font-size: 1.2rem;
-  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+.nav-mark {
+  width: 20px;
+  height: 3px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ink-900) 14%, transparent);
+  justify-self: center;
+  transition:
+    background 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.nav-item:active .nav-icon {
-  transform: scale(0.9);
+.nav-item--active .nav-mark {
+  background: var(--accent-lime);
+  transform: scaleX(1.2);
 }
 
 .nav-label {
-  font-size: 0.66rem;
-  font-weight: 700;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
-@media (prefers-color-scheme: dark) {
-  .app-header,
+@media (max-width: 720px) {
+  .app-header {
+    padding: 0 var(--space-4);
+  }
+
+  .app-brand {
+    font-size: 1.35rem;
+  }
+
   .app-bottom-nav {
-    border-color: color-mix(in srgb, white 10%, transparent);
+    inset-inline: var(--space-3);
   }
 }

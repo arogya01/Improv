@@ -1,0 +1,136 @@
+.marketing-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--bg-gradient);
+  font-family: var(--font-ui);
+  color: var(--ink-900);
+}
+
+.marketing-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+  padding: 0 var(--space-6);
+  background: color-mix(in srgb, var(--surface-muted) 94%, transparent);
+  border-bottom: 1px solid var(--line-soft);
+  transition:
+    height 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.22s,
+    background 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.marketing-header--compact {
+  height: 72px;
+  box-shadow: var(--shadow-sm);
+}
+
+.marketing-title {
+  font-family: var(--font-headline);
+  font-size: 1.7rem;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  color: var(--ink-900);
+  text-decoration: none;
+  margin-right: auto;
+}
+
+.marketing-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.marketing-link,
+.marketing-secondary,
+.marketing-primary {
+  text-decoration: none;
+  transition:
+    color 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.marketing-link {
+  color: var(--ink-700);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.marketing-link:hover,
+.marketing-secondary:hover {
+  color: var(--ink-900);
+}
+
+.marketing-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.marketing-secondary {
+  color: var(--ink-700);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.marketing-primary {
+  padding: 0.8rem 1.1rem;
+  border-radius: var(--radius-sm);
+  background: var(--accent-lime);
+  color: #10100f;
+  font-size: 0.92rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+
+.marketing-primary:hover {
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--accent-lime) 92%, white);
+}
+
+.marketing-content {
+  flex: 1;
+  position: relative;
+}
+
+@media (max-width: 920px) {
+  .marketing-nav,
+  .marketing-secondary {
+    display: none;
+  }
+
+  .marketing-header {
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: 0 var(--space-4);
+  }
+
+  .marketing-title,
+  .marketing-actions {
+    margin: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .marketing-header {
+    height: 72px;
+  }
+
+  .marketing-title {
+    font-size: 1.45rem;
+  }
+
+  .marketing-primary {
+    padding-inline: 0.9rem;
+    font-size: 0.85rem;
+  }
+}

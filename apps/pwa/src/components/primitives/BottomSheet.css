@@ -2,9 +2,8 @@
   position: fixed;
   inset: 0;
   z-index: 50;
-  background-color: rgba(15, 23, 42, 0.4);
-  backdrop-filter: blur(4px);
-  will-change: opacity, backdrop-filter;
+  background-color: rgba(7, 7, 7, 0.45);
+  will-change: opacity;
 }
 
 .primitive-bottom-sheet__overlay.is-open {
@@ -23,9 +22,10 @@
   max-height: 90vh;
   display: flex;
   flex-direction: column;
-  background: var(--bg-primary);
-  border-top-left-radius: var(--radius-xl);
-  border-top-right-radius: var(--radius-xl);
+  background: var(--surface-muted);
+  border-top: 1px solid var(--line-soft);
+  border-top-left-radius: var(--radius-2xl);
+  border-top-right-radius: var(--radius-2xl);
   box-shadow: var(--shadow-xl);
   will-change: transform;
 }
@@ -55,7 +55,7 @@
   width: 48px;
   height: 5px;
   border-radius: var(--radius-full);
-  background-color: var(--ink-100);
+  background-color: color-mix(in srgb, var(--ink-900) 18%, transparent);
 }
 
 .primitive-bottom-sheet__header {
@@ -66,9 +66,10 @@
 .primitive-bottom-sheet__title {
   margin: 0;
   font-family: var(--font-headline);
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 600;
   color: var(--ink-900);
+  letter-spacing: -0.02em;
 }
 
 .primitive-bottom-sheet__body {

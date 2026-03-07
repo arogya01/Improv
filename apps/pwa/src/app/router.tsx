@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { AppShell } from "./layouts/AppShell";
+import { MarketingShell } from "./layouts/MarketingShell";
 import {
   HomePage,
   PracticeSetupPage,
@@ -13,9 +14,13 @@ import {
 export const router = createBrowserRouter([
   {
     path: "/",
+    element: <MarketingShell />,
+    children: [{ index: true, element: <HomePage /> }],
+  },
+  {
+    path: "/",
     element: <AppShell />,
     children: [
-      { index: true, element: <HomePage /> },
       { path: "practice/setup", element: <PracticeSetupPage /> },
       { path: "practice/session", element: <PracticeSessionPage /> },
       { path: "library", element: <LibraryPage /> },

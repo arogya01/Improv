@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 import { Button, Card, Chip } from "../components/primitives";
 import { improvDatabase, syncQueueService } from "../lib/client-services";
@@ -66,7 +67,12 @@ export const SettingsPage: React.FC = () => {
   }, [refreshDiagnostics]);
 
   return (
-    <div className={styles.page}>
+    <motion.div
+      className={styles.page}
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+    >
       <div className={styles.headerRow}>
         <div>
           <h2 className={styles.title}>Settings</h2>
@@ -134,6 +140,6 @@ export const SettingsPage: React.FC = () => {
           work without any backend dependency.
         </p>
       </Card>
-    </div>
+    </motion.div>
   );
 };

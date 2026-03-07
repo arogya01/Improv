@@ -1,10 +1,9 @@
 .primitive-skeleton {
-  background: var(--ink-100);
   background: linear-gradient(
     90deg,
-    var(--ink-100) 25%,
-    var(--bg-primary) 50%,
-    var(--ink-100) 75%
+    color-mix(in srgb, var(--surface-muted) 96%, transparent) 25%,
+    color-mix(in srgb, var(--surface-raised) 96%, transparent) 50%,
+    color-mix(in srgb, var(--surface-muted) 96%, transparent) 75%
   );
   background-size: 400% 100%;
   animation: skeleton-shimmer 1.5s ease-in-out infinite;
@@ -25,6 +24,6 @@
 @media (prefers-reduced-motion) {
   .primitive-skeleton {
     animation: none;
-    background: var(--ink-100);
+    background: color-mix(in srgb, var(--surface-muted) 96%, transparent);
   }
 }

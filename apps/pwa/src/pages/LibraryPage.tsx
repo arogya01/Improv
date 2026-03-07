@@ -57,7 +57,12 @@ export const LibraryPage: React.FC = () => {
 
   return (
     <div className={styles.page}>
-      <div className={styles.headerRow}>
+      <motion.div
+        className={styles.headerRow}
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
+      >
         <div>
           <h2 className={styles.title}>Library</h2>
           <p className={styles.subtitle}>Review sessions, favorite the best takes, and keep iterating.</p>
@@ -65,7 +70,7 @@ export const LibraryPage: React.FC = () => {
         <Button variant="secondary" onClick={() => setFavoritesOnly((value) => !value)}>
           {favoritesOnly ? "Show All" : "Favorites"}
         </Button>
-      </div>
+      </motion.div>
 
       {isLoading && (
         <div className={styles.loadingList}>
@@ -76,19 +81,31 @@ export const LibraryPage: React.FC = () => {
       )}
 
       {!isLoading && recordings.length === 0 && (
-        <Card className={styles.emptyState}>
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <Card className={styles.emptyState}>
           <h3>No recordings yet</h3>
           <p>Spin a topic and create your first session to populate this library.</p>
           <Button onClick={() => navigate("/practice/setup")}>Start Recording</Button>
-        </Card>
+          </Card>
+        </motion.div>
       )}
 
       <motion.div layout className={styles.list}>
-        {recordings.map((recording) => {
+        {recordings.map((recording, index) => {
           const status = getSyncStatusMeta(recording.syncStatus);
 
           return (
-            <motion.div layout key={recording.id}>
+            <motion.div
+              layout
+              key={recording.id}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.28, delay: index * 0.04 }}
+            >
               <Card
                 interactive
                 className={styles.itemCard}

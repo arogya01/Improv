@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import type { RecordingMeta } from "@improv/core";
+import { motion } from "framer-motion";
 
 import { Button, Card, Chip, Skeleton } from "../components/primitives";
 import { libraryService } from "../lib/client-services";
@@ -106,7 +107,12 @@ export const SessionDetailPage: React.FC = () => {
   };
 
   return (
-    <div className={styles.page}>
+    <motion.div
+      className={styles.page}
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+    >
       <div className={styles.headerRow}>
         <Button variant="ghost" onClick={() => navigate("/library")}>Back</Button>
         <Chip variant={status.variant}>{status.label}</Chip>
@@ -156,6 +162,6 @@ export const SessionDetailPage: React.FC = () => {
         </Button>
         <Button variant="ghost" onClick={deleteRecording}>Delete</Button>
       </div>
-    </div>
+    </motion.div>
   );
 };

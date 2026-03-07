@@ -9,17 +9,34 @@ html,
 body {
   margin: 0;
   padding: 0;
-  height: 100vh;
+  min-height: 100%;
   overscroll-behavior-y: none;
   background-color: var(--bg-primary);
   color: var(--ink-900);
   font-family: var(--font-ui);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 112px;
 }
 
 #root {
-  height: 100vh;
-  /* Accommodates dynamic browser chrome height */
-  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+body ::selection {
+  background: color-mix(in srgb, var(--accent-lime) 28%, transparent);
+  color: var(--ink-900);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }

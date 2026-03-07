@@ -1,0 +1,121 @@
+.pinnedContainer {
+  position: relative;
+  height: 300vh;
+}
+
+.stickyStage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.stageContent {
+  width: min(100%, 760px);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  text-align: center;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-family: var(--font-headline);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  color: var(--ink-900);
+}
+
+.progressTrack {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.progressDot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: var(--accent-lime);
+}
+
+.stepsRegion {
+  position: relative;
+  width: 100%;
+  min-height: 220px;
+  display: grid;
+  place-items: center;
+}
+
+.stepCard {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  background: color-mix(in srgb, var(--surface-muted) 96%, transparent);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  will-change: transform, opacity;
+}
+
+.stepBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #10100f;
+  background: var(--accent-lime);
+}
+
+.stepTitle {
+  margin: 0;
+  font-family: var(--font-headline);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--ink-900);
+  letter-spacing: -0.03em;
+}
+
+.stepCopy {
+  margin: 0;
+  max-width: 40ch;
+  color: var(--ink-700);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+.reducedGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  width: min(100%, 980px);
+  margin: 0 auto;
+}
+
+.reducedGrid .stepCard {
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .reducedGrid {
+    grid-template-columns: 1fr;
+  }
+}

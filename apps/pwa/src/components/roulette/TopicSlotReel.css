@@ -1,12 +1,12 @@
 .topic-slot {
   position: relative;
   border-radius: var(--radius-xl);
-  border: 1px solid color-mix(in srgb, var(--ink-900) 8%, transparent);
+  border: 1px solid var(--line-soft);
   background:
-    radial-gradient(circle at 18% 12%, color-mix(in srgb, var(--cyan-500) 16%, transparent) 0, transparent 42%),
-    radial-gradient(circle at 82% 84%, color-mix(in srgb, var(--warm-accent) 14%, transparent) 0, transparent 38%),
-    color-mix(in srgb, var(--bg-primary) 94%, transparent);
-  box-shadow: var(--shadow-lg);
+    radial-gradient(circle at 20% 16%, color-mix(in srgb, var(--accent-coral) 22%, transparent) 0, transparent 44%),
+    radial-gradient(circle at 84% 82%, color-mix(in srgb, var(--accent-cyan) 18%, transparent) 0, transparent 42%),
+    color-mix(in srgb, var(--surface-raised) 98%, transparent);
+  box-shadow: var(--shadow-md);
   overflow: hidden;
 }
 
@@ -26,12 +26,12 @@
 
 .topic-slot__edge--top {
   top: 0;
-  background: linear-gradient(to bottom, color-mix(in srgb, var(--bg-primary) 96%, transparent), transparent);
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--surface-raised) 96%, transparent), transparent);
 }
 
 .topic-slot__edge--bottom {
   bottom: 44px;
-  background: linear-gradient(to top, color-mix(in srgb, var(--bg-primary) 96%, transparent), transparent);
+  background: linear-gradient(to top, color-mix(in srgb, var(--surface-raised) 96%, transparent), transparent);
 }
 
 .topic-slot__rail {
@@ -54,26 +54,27 @@
   font-size: 0.65rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ink-700);
+  letter-spacing: 0.12em;
+  color: var(--accent-lime);
 }
 
 .topic-slot__text {
-  font-family: var(--font-headline);
-  font-size: 1.02rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
   line-height: 1.2;
   letter-spacing: -0.01em;
   color: var(--ink-900);
+  font-weight: 600;
 }
 
 .topic-slot__selected {
-  border-top: 1px solid color-mix(in srgb, var(--ink-900) 8%, transparent);
-  background: color-mix(in srgb, var(--bg-secondary) 92%, transparent);
+  border-top: 1px solid var(--line-soft);
+  background: color-mix(in srgb, var(--surface-muted) 92%, transparent);
   padding: var(--space-2) var(--space-4) var(--space-3);
   font-family: var(--font-ui);
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--ink-800);
+  color: var(--ink-700);
   text-align: center;
 }
 
@@ -85,15 +86,5 @@
   100% {
     transform: scale(1);
     filter: saturate(1);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .topic-slot {
-    border-color: color-mix(in srgb, white 12%, transparent);
-  }
-
-  .topic-slot__selected {
-    border-top-color: color-mix(in srgb, white 12%, transparent);
   }
 }
