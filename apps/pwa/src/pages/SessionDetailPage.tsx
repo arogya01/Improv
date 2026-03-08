@@ -5,8 +5,11 @@ import { motion } from "framer-motion";
 
 import { Button, Card, Chip, Skeleton } from "../components/primitives";
 import { libraryService } from "../lib/client-services";
-import { formatCreatedAt, formatDuration, getSyncStatusMeta } from "./library-ui";
-import styles from "./SessionDetailPage.module.css";
+import {
+  formatCreatedAt,
+  formatDuration,
+  getSyncStatusMeta,
+} from "./library-ui";
 
 export const SessionDetailPage: React.FC = () => {
   const navigate = useNavigate();
@@ -62,7 +65,7 @@ export const SessionDetailPage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className={styles.page}>
+      <div className="w-full max-w-[980px] mx-auto min-h-[calc(100vh-76px)] p-[clamp(2rem,4vw,3rem)] px-4 pb-[calc(112px+env(safe-area-inset-bottom))] grid gap-4">
         <Skeleton style={{ height: "240px" }} />
         <Skeleton style={{ height: "120px" }} />
       </div>
@@ -71,10 +74,10 @@ export const SessionDetailPage: React.FC = () => {
 
   if (!recording || !recordingId) {
     return (
-      <div className={styles.page}>
+      <div className="w-full max-w-[980px] mx-auto min-h-[calc(100vh-76px)] p-[clamp(2rem,4vw,3rem)] px-4 pb-[calc(112px+env(safe-area-inset-bottom))] grid gap-4">
         <Card>
-          <h2>Recording not found</h2>
-          <Button onClick={() => navigate("/library")}>Back to Library</Button>
+          <h2>Reflection not found</h2>
+          <Button onClick={() => navigate("/library")}>Back</Button>
         </Card>
       </div>
     );
@@ -84,20 +87,24 @@ export const SessionDetailPage: React.FC = () => {
 
   const toggleFavorite = async () => {
     const next = !recording.isFavorite;
-    await libraryService.setFavorite(recording.id, next, new Date().toISOString());
+    await libraryService.setFavorite(
+      recording.id,
+      next,
+      new Date().toISOString(),
+    );
     setRecording((current) =>
       current
         ? {
             ...current,
             isFavorite: next,
-            updatedAt: new Date().toISOString()
+            updatedAt: new Date().toISOString(),
           }
-        : current
+        : current,
     );
   };
 
   const deleteRecording = async () => {
-    const confirmed = window.confirm("Delete this recording from local storage?");
+    const confirmed = window.confirm("Discard this reflection?");
     if (!confirmed) {
       return;
     }
@@ -108,59 +115,93 @@ export const SessionDetailPage: React.FC = () => {
 
   return (
     <motion.div
-      className={styles.page}
+      className="w-full max-w-[980px] mx-auto min-h-[calc(100vh-76px)] p-[clamp(2rem,4vw,3rem)] px-4 pb-[calc(112px+env(safe-area-inset-bottom))] grid gap-4"
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className={styles.headerRow}>
-        <Button variant="ghost" onClick={() => navigate("/library")}>Back</Button>
+      <div className="flex justify-between items-center">
+        <Button variant="ghost" onClick={() => navigate("/library")}>
+          Back
+        </Button>
         <Chip variant={status.variant}>{status.label}</Chip>
       </div>
 
-      <Card className={styles.playerCard}>
+      <Card className="p-3">
         {mediaUrl ? (
           recording.mediaType === "video" ? (
-            <video className={styles.media} controls src={mediaUrl} />
+            <video
+              className="w-full rounded-2xl bg-[color-mix(in_srgb,var(--surface-muted)_96%,transparent)]"
+              controls
+              src={mediaUrl}
+            />
           ) : (
-            <audio className={styles.media} controls src={mediaUrl} />
+            <audio
+              className="w-full rounded-2xl bg-[color-mix(in_srgb,var(--surface-muted)_96%,transparent)]"
+              controls
+              src={mediaUrl}
+            />
           )
         ) : (
-          <p className={styles.missing}>Media bytes unavailable for this recording.</p>
+          <p className="m-0 text-ink-700">Media unavailable.</p>
         )}
       </Card>
 
-      <Card className={styles.metaCard}>
-        <h3>Session Summary</h3>
-        <dl>
-          <div>
-            <dt>Topic</dt>
-            <dd>{recording.promptId}</dd>
+      <Card className="grid gap-3">
+        <h3 className="m-0 font-headline text-[1.8rem] tracking-tight pb-3 border-b border-[var(--line-soft)]">
+          Details
+        </h3>
+        <dl className="m-0 grid gap-2">
+          <div className="flex justify-between gap-3 pb-3 border-b border-[var(--line-soft)]">
+            <dt className="text-ink-700 font-mono uppercase text-[0.78rem] tracking-wide">
+              Topic
+            </dt>
+            <dd className="m-0 text-right font-semibold font-ui">
+              {recording.promptId}
+            </dd>
           </div>
-          <div>
-            <dt>Created</dt>
-            <dd>{formatCreatedAt(recording.createdAt)}</dd>
+          <div className="flex justify-between gap-3 pb-3 border-b border-[var(--line-soft)]">
+            <dt className="text-ink-700 font-mono uppercase text-[0.78rem] tracking-wide">
+              Created
+            </dt>
+            <dd className="m-0 text-right font-semibold font-ui">
+              {formatCreatedAt(recording.createdAt)}
+            </dd>
           </div>
-          <div>
-            <dt>Duration</dt>
-            <dd>{formatDuration(recording.durationMs)}</dd>
+          <div className="flex justify-between gap-3 pb-3 border-b border-[var(--line-soft)]">
+            <dt className="text-ink-700 font-mono uppercase text-[0.78rem] tracking-wide">
+              Duration
+            </dt>
+            <dd className="m-0 text-right font-semibold font-ui">
+              {formatDuration(recording.durationMs)}
+            </dd>
           </div>
-          <div>
-            <dt>Format</dt>
-            <dd>{recording.mimeType}</dd>
+          <div className="flex justify-between gap-3 pb-3 border-b border-[var(--line-soft)]">
+            <dt className="text-ink-700 font-mono uppercase text-[0.78rem] tracking-wide">
+              Format
+            </dt>
+            <dd className="m-0 text-right font-semibold font-ui">
+              {recording.mimeType}
+            </dd>
           </div>
-          <div>
-            <dt>Size</dt>
-            <dd>{Math.max(1, Math.round(recording.fileSizeBytes / 1024))} KB</dd>
+          <div className="flex justify-between gap-3 pb-3 border-b border-[var(--line-soft)]">
+            <dt className="text-ink-700 font-mono uppercase text-[0.78rem] tracking-wide">
+              Size
+            </dt>
+            <dd className="m-0 text-right font-semibold font-ui">
+              {Math.max(1, Math.round(recording.fileSizeBytes / 1024))} KB
+            </dd>
           </div>
         </dl>
       </Card>
 
-      <div className={styles.actions}>
+      <div className="flex gap-3 flex-wrap">
         <Button variant="secondary" onClick={toggleFavorite}>
           {recording.isFavorite ? "Unfavorite" : "Favorite"}
         </Button>
-        <Button variant="ghost" onClick={deleteRecording}>Delete</Button>
+        <Button variant="ghost" onClick={deleteRecording}>
+          Delete
+        </Button>
       </div>
     </motion.div>
   );

@@ -1,6 +1,10 @@
 @import "./design/fonts.css";
 @import "./design/tokens.css";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   box-sizing: border-box;
 }
@@ -12,8 +16,9 @@ body {
   min-height: 100%;
   overscroll-behavior-y: none;
   background-color: var(--bg-primary);
-  color: var(--ink-900);
+  color: var(--ink-800);
   font-family: var(--font-ui);
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -27,10 +32,40 @@ html {
 #root {
   min-height: 100vh;
   min-height: 100dvh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── Ambient Background Gradients (ethereal) ─── */
+#root::before,
+#root::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+}
+
+#root::before {
+  top: -10%;
+  left: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: color-mix(in srgb, var(--indigo-200) 30%, transparent);
+  filter: blur(140px);
+}
+
+#root::after {
+  bottom: -20%;
+  right: -10%;
+  width: 70vw;
+  height: 70vw;
+  background: color-mix(in srgb, var(--teal-200) 30%, transparent);
+  filter: blur(160px);
 }
 
 body ::selection {
-  background: color-mix(in srgb, var(--accent-lime) 28%, transparent);
+  background: color-mix(in srgb, var(--teal-500) 20%, transparent);
   color: var(--ink-900);
 }
 
@@ -39,4 +74,17 @@ input,
 textarea,
 select {
   font: inherit;
+}
+
+/* ─── Skeleton shimmer base ─── */
+@layer components {
+  .skeleton-gradient {
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--surface-muted) 96%, transparent) 25%,
+      color-mix(in srgb, var(--surface-raised) 96%, transparent) 50%,
+      color-mix(in srgb, var(--surface-muted) 96%, transparent) 75%
+    );
+    background-size: 400% 100%;
+  }
 }

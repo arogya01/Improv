@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./BottomSheet.css";
+import { cn } from "../../lib/utils";
 
 export interface BottomSheetProps {
   isOpen: boolean;
@@ -35,35 +35,46 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
     setTimeout(() => {
       onClose();
       setIsClosing(false);
-    }, 300); // match transition
+    }, 300);
   };
 
   if (!isOpen && !isClosing) return null;
 
   return (
     <div
-      className={`primitive-bottom-sheet__overlay ${isClosing ? "is-closing" : "is-open"}`}
+      className={cn(
+        "fixed inset-0 z-50 bg-black/40 will-change-[opacity]",
+        isClosing ? "animate-overlay-fade-out" : "animate-overlay-fade-in",
+      )}
       onClick={handleClose}
     >
       <div
         ref={sheetRef}
-        className={`primitive-bottom-sheet__content ${isClosing ? "is-closing" : "is-open"}`}
+        className={cn(
+          "absolute bottom-0 left-0 right-0 max-h-[90vh] flex flex-col bg-[var(--surface-muted)] border-t border-[var(--line-soft)] rounded-t-[32px] shadow-ethereal-xl will-change-transform",
+          isClosing ? "animate-sheet-slide-down" : "animate-sheet-slide-up",
+          "motion-reduce:[animation-duration:0.12s]",
+        )}
         onClick={(e) => e.stopPropagation()}
       >
         <div
-          className="primitive-bottom-sheet__drag-handle"
+          className="w-full py-3 flex justify-center items-center cursor-grab active:cursor-grabbing"
           onClick={handleClose}
         >
-          <div className="primitive-bottom-sheet__dragger" />
+          <div className="w-12 h-[5px] rounded-full bg-[color-mix(in_srgb,var(--ink-900)_14%,transparent)]" />
         </div>
 
         {title && (
-          <div className="primitive-bottom-sheet__header">
-            <h3 className="primitive-bottom-sheet__title">{title}</h3>
+          <div className="px-6 pb-4 text-center">
+            <h3 className="m-0 font-headline text-2xl font-medium text-ink-900 tracking-tight">
+              {title}
+            </h3>
           </div>
         )}
 
-        <div className="primitive-bottom-sheet__body">{children}</div>
+        <div className="px-6 pb-8 overflow-y-auto overscroll-contain">
+          {children}
+        </div>
       </div>
     </div>
   );

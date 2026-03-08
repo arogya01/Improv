@@ -8,7 +8,7 @@ import {
 } from "framer-motion";
 import { MotionTokens } from "../../design/motion";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
-import styles from "./PinnedNarrative.module.css";
+import { cn } from "../../lib/utils";
 
 export interface NarrativeStep {
   key: string;
@@ -51,16 +51,22 @@ const StepCard: React.FC<{
 
   return (
     <motion.article
-      className={styles.stepCard}
+      className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 bg-[color-mix(in_srgb,var(--surface-muted)_94%,transparent)] border border-[var(--line-soft)] rounded-3xl shadow-ethereal-md will-change-transform"
       style={{
         opacity: smoothOpacity,
         y: smoothY,
         scale: smoothScale,
       }}
     >
-      <span className={styles.stepBadge}>{step.step}</span>
-      <h3 className={styles.stepTitle}>{step.title}</h3>
-      <p className={styles.stepCopy}>{step.copy}</p>
+      <span className="inline-flex items-center justify-center w-[2.8rem] h-[2.8rem] rounded-full font-ui text-[0.8rem] font-bold tracking-widest uppercase text-[#10100f] bg-teal-500">
+        {step.step}
+      </span>
+      <h3 className="m-0 font-headline text-[1.8rem] font-medium text-ink-900 tracking-tight">
+        {step.title}
+      </h3>
+      <p className="m-0 max-w-[40ch] text-ink-700 font-body leading-relaxed">
+        {step.copy}
+      </p>
     </motion.article>
   );
 };
@@ -78,7 +84,7 @@ const ProgressDot: React.FC<{
 
   return (
     <motion.div
-      className={styles.progressDot}
+      className="w-2.5 h-2.5 rounded-full bg-teal-500"
       style={{ opacity: smoothOpacity, scale: smoothScale }}
     />
   );
@@ -105,12 +111,26 @@ export const PinnedNarrative: React.FC<PinnedNarrativeProps> = ({
 
   if (shouldReduce) {
     return (
-      <div className={`${styles.reducedGrid} ${className ?? ""}`}>
+      <div
+        className={cn(
+          "grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-[980px] mx-auto",
+          className,
+        )}
+      >
         {steps.map((step) => (
-          <article key={step.key} className={styles.stepCard}>
-            <span className={styles.stepBadge}>{step.step}</span>
-            <h3 className={styles.stepTitle}>{step.title}</h3>
-            <p className={styles.stepCopy}>{step.copy}</p>
+          <article
+            key={step.key}
+            className="relative flex flex-col items-center justify-center gap-3 p-6 bg-[color-mix(in_srgb,var(--surface-muted)_94%,transparent)] border border-[var(--line-soft)] rounded-3xl shadow-ethereal-md"
+          >
+            <span className="inline-flex items-center justify-center w-[2.8rem] h-[2.8rem] rounded-full font-ui text-[0.8rem] font-bold tracking-widest uppercase text-[#10100f] bg-teal-500">
+              {step.step}
+            </span>
+            <h3 className="m-0 font-headline text-[1.8rem] font-medium text-ink-900 tracking-tight">
+              {step.title}
+            </h3>
+            <p className="m-0 max-w-[40ch] text-ink-700 font-body leading-relaxed">
+              {step.copy}
+            </p>
           </article>
         ))}
       </div>
@@ -118,15 +138,14 @@ export const PinnedNarrative: React.FC<PinnedNarrativeProps> = ({
   }
 
   return (
-    <div
-      ref={containerRef}
-      className={`${styles.pinnedContainer} ${className ?? ""}`}
-    >
-      <div className={styles.stickyStage}>
-        <div className={styles.stageContent}>
-          <h2 className={styles.sectionTitle}>{title}</h2>
+    <div ref={containerRef} className={cn("relative h-[300vh]", className)}>
+      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+        <div className="w-full max-w-[760px] px-6 flex flex-col items-center gap-6 text-center">
+          <h2 className="m-0 font-headline text-[clamp(2rem,4vw,3.25rem)] font-medium tracking-tighter text-ink-900">
+            {title}
+          </h2>
 
-          <div className={styles.progressTrack}>
+          <div className="flex items-center gap-3">
             {progressDots.map((dot, i) => (
               <ProgressDot
                 key={steps[i]!.key}
@@ -137,7 +156,7 @@ export const PinnedNarrative: React.FC<PinnedNarrativeProps> = ({
             ))}
           </div>
 
-          <div className={styles.stepsRegion}>
+          <div className="relative w-full min-h-[220px] grid place-items-center">
             {steps.map((step, i) => (
               <StepCard
                 key={step.key}

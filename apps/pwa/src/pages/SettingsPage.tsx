@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 
 import { Button, Card, Chip } from "../components/primitives";
 import { improvDatabase, syncQueueService } from "../lib/client-services";
-import styles from "./SettingsPage.module.css";
 
 type StorageSnapshot = {
   quotaBytes: number | undefined;
@@ -29,14 +28,14 @@ function formatMegabytes(bytes?: number): string {
 export const SettingsPage: React.FC = () => {
   const [storage, setStorage] = useState<StorageSnapshot>({
     quotaBytes: undefined,
-    usedBytes: undefined
+    usedBytes: undefined,
   });
   const [queue, setQueue] = useState<QueueSnapshot>({
     total: 0,
     dueNow: 0,
     upload: 0,
     finalizeUpload: 0,
-    deleteCloud: 0
+    deleteCloud: 0,
   });
   const [loading, setLoading] = useState(true);
 
@@ -49,14 +48,19 @@ export const SettingsPage: React.FC = () => {
     }
 
     const allItems = await improvDatabase.syncQueue.toArray();
-    const dueNow = await syncQueueService.listDueItems(new Date().toISOString(), 1000);
+    const dueNow = await syncQueueService.listDueItems(
+      new Date().toISOString(),
+      1000,
+    );
 
     setQueue({
       total: allItems.length,
       dueNow: dueNow.length,
       upload: allItems.filter((item) => item.kind === "upload").length,
-      finalizeUpload: allItems.filter((item) => item.kind === "finalize_upload").length,
-      deleteCloud: allItems.filter((item) => item.kind === "delete_cloud").length
+      finalizeUpload: allItems.filter((item) => item.kind === "finalize_upload")
+        .length,
+      deleteCloud: allItems.filter((item) => item.kind === "delete_cloud")
+        .length,
     });
 
     setLoading(false);
@@ -68,76 +72,90 @@ export const SettingsPage: React.FC = () => {
 
   return (
     <motion.div
-      className={styles.page}
+      className="w-full max-w-[1100px] mx-auto min-h-[calc(100vh-76px)] p-[clamp(2rem,4vw,3rem)] px-4 pb-[calc(112px+env(safe-area-inset-bottom))] grid gap-4"
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className={styles.headerRow}>
+      <div className="flex justify-between gap-4 items-start max-[700px]:flex-col">
         <div>
-          <h2 className={styles.title}>Settings</h2>
-          <p className={styles.subtitle}>Local diagnostics and sync readiness for the client-side app.</p>
+          <h2 className="m-0 font-headline text-[clamp(2.3rem,5vw,4rem)] tracking-tighter leading-none">
+            Settings
+          </h2>
+          <p className="mt-3 mb-0 text-ink-700 max-w-[52ch] leading-relaxed">
+            Storage & sync diagnostics.
+          </p>
         </div>
-        <Button variant="secondary" onClick={refreshDiagnostics} isLoading={loading}>
+        <Button
+          variant="secondary"
+          onClick={refreshDiagnostics}
+          isLoading={loading}
+        >
           Refresh
         </Button>
       </div>
 
-      <Card className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <h3>Storage</h3>
+      <Card className="grid gap-3">
+        <div className="flex justify-between items-center gap-3">
+          <h3 className="m-0 font-headline text-[1.55rem] tracking-tight">
+            Storage
+          </h3>
           <Chip variant="default">Local</Chip>
         </div>
 
-        <div className={styles.kv}>
-          <span>Used</span>
+        <div className="flex justify-between gap-2 text-[0.95rem] pb-3 border-b border-[var(--line-soft)]">
+          <span className="text-ink-700">Used</span>
           <strong>{formatMegabytes(storage.usedBytes)}</strong>
         </div>
-        <div className={styles.kv}>
-          <span>Quota</span>
+        <div className="flex justify-between gap-2 text-[0.95rem] pb-3 border-b border-[var(--line-soft)]">
+          <span className="text-ink-700">Quota</span>
           <strong>{formatMegabytes(storage.quotaBytes)}</strong>
         </div>
       </Card>
 
-      <Card className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <h3>Sync Queue</h3>
+      <Card className="grid gap-3">
+        <div className="flex justify-between items-center gap-3">
+          <h3 className="m-0 font-headline text-[1.55rem] tracking-tight">
+            Sync Queue
+          </h3>
           <Chip variant={queue.total > 0 ? "warning" : "success"}>
             {queue.total > 0 ? "Pending" : "Idle"}
           </Chip>
         </div>
 
-        <div className={styles.kv}>
-          <span>Total items</span>
+        <div className="flex justify-between gap-2 text-[0.95rem] pb-3 border-b border-[var(--line-soft)]">
+          <span className="text-ink-700">Total items</span>
           <strong>{queue.total}</strong>
         </div>
-        <div className={styles.kv}>
-          <span>Due now</span>
+        <div className="flex justify-between gap-2 text-[0.95rem] pb-3 border-b border-[var(--line-soft)]">
+          <span className="text-ink-700">Due now</span>
           <strong>{queue.dueNow}</strong>
         </div>
-        <div className={styles.kv}>
-          <span>Upload</span>
+        <div className="flex justify-between gap-2 text-[0.95rem] pb-3 border-b border-[var(--line-soft)]">
+          <span className="text-ink-700">Upload</span>
           <strong>{queue.upload}</strong>
         </div>
-        <div className={styles.kv}>
-          <span>Finalize upload</span>
+        <div className="flex justify-between gap-2 text-[0.95rem] pb-3 border-b border-[var(--line-soft)]">
+          <span className="text-ink-700">Finalize upload</span>
           <strong>{queue.finalizeUpload}</strong>
         </div>
-        <div className={styles.kv}>
-          <span>Delete cloud</span>
+        <div className="flex justify-between gap-2 text-[0.95rem] pb-3 border-b border-[var(--line-soft)]">
+          <span className="text-ink-700">Delete cloud</span>
           <strong>{queue.deleteCloud}</strong>
         </div>
       </Card>
 
-      <Card className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <h3>Cloud Backup</h3>
+      <Card className="grid gap-3">
+        <div className="flex justify-between items-center gap-3">
+          <h3 className="m-0 font-headline text-[1.55rem] tracking-tight">
+            Cloud Backup
+          </h3>
           <Chip variant="info">Coming Soon</Chip>
         </div>
 
-        <p>
-          Cloud auth and background upload will be layered in next. Local-first recording and playback already
-          work without any backend dependency.
+        <p className="m-0 text-ink-700 leading-relaxed">
+          Cloud auth and background upload will be layered in next. Local-first
+          recording and playback already work without any backend dependency.
         </p>
       </Card>
     </motion.div>

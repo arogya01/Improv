@@ -1,8 +1,8 @@
 import React from "react";
 import type { ReactNode } from "react";
-import styles from "./BentoGrid.module.css";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
+import { cn } from "../../lib/utils";
 
 interface BentoGridProps {
   children: ReactNode;
@@ -12,13 +12,22 @@ interface BentoGridProps {
 export function BentoGrid({
   children,
   className = "",
-}: BentoGridProps): JSX.Element {
-  return <div className={`${styles.grid} ${className}`}>{children}</div>;
+}: BentoGridProps): React.ReactElement {
+  return (
+    <div
+      className={cn(
+        "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full",
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
 }
 
 interface BentoItemProps {
   children: ReactNode;
-  colSpan?: 1 | 2; /* 1/3 or 2/3 width */
+  colSpan?: 1 | 2;
   className?: string;
   delay?: number;
 }
@@ -44,12 +53,14 @@ export function BentoItem({
   colSpan = 1,
   className = "",
   delay = 0,
-}: BentoItemProps): JSX.Element {
-  const spanClass = colSpan === 2 ? styles.span2 : styles.span1;
-
+}: BentoItemProps): React.ReactElement {
   return (
     <motion.div
-      className={`${styles.item} ${spanClass} ${className}`}
+      className={cn(
+        "bg-[var(--bg-primary)] rounded-3xl shadow-ethereal border border-[var(--glass-border)] overflow-hidden relative [transform-style:preserve-3d] [perspective:1000px]",
+        colSpan === 2 ? "col-span-1 md:col-span-2" : "col-span-1",
+        className,
+      )}
       custom={delay}
       initial="hidden"
       whileInView="visible"

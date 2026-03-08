@@ -1,5 +1,4 @@
 export { HomePage } from "./HomePage";
-export { PracticeSetupPage } from "./PracticeSetupPage";
 export { PracticeSessionPage } from "./PracticeSessionPage";
 export { LibraryPage } from "./LibraryPage";
 export { SessionDetailPage } from "./SessionDetailPage";

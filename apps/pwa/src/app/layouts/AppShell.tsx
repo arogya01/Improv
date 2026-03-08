@@ -1,86 +1,110 @@
 import React from "react";
-import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
-import "./AppShell.css";
-
-type RouteMeta = {
-  kicker: string;
-  label: string;
-};
-
-function getRouteMeta(pathname: string): RouteMeta {
-  if (pathname.startsWith("/practice/setup")) {
-    return { kicker: "Preflight", label: "Setup" };
-  }
-
-  if (pathname.startsWith("/practice/session")) {
-    return { kicker: "Live", label: "Session" };
-  }
-
-  if (pathname.startsWith("/library/")) {
-    return { kicker: "Archive", label: "Session Detail" };
-  }
-
-  if (pathname.startsWith("/library")) {
-    return { kicker: "Archive", label: "Library" };
-  }
-
-  if (pathname.startsWith("/settings")) {
-    return { kicker: "System", label: "Settings" };
-  }
-
-  return { kicker: "Studio", label: "Improv" };
-}
+import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { cn } from "../../lib/utils";
 
 export const AppShell: React.FC = () => {
   const location = useLocation();
   const isSessionRoute = location.pathname === "/practice/session";
-  const routeMeta = getRouteMeta(location.pathname);
 
   return (
-    <div className={`app-shell-container ${isSessionRoute ? "app-shell-container--immersive" : ""}`}>
-      {!isSessionRoute && (
-        <header className="app-header">
-          <Link to="/" className="app-brand">
-            Improv
-          </Link>
-
-          <div className="app-header-copy">
-            <span className="app-header-kicker">{routeMeta.kicker}</span>
-            <span className="app-header-label">{routeMeta.label}</span>
-          </div>
-        </header>
-      )}
-
-      <main className={`app-content-area ${isSessionRoute ? "app-content-area--immersive" : ""}`}>
+    <div
+      className={cn("flex flex-col h-dvh bg-transparent font-ui text-ink-900")}
+    >
+      <main
+        className={cn(
+          "flex-1 overflow-y-auto relative scroll-smooth",
+          !isSessionRoute && "pb-[88px]",
+        )}
+      >
         <Outlet />
       </main>
 
       {!isSessionRoute && (
-        <nav className="app-bottom-nav" aria-label="Primary navigation">
-          <NavLink to="/" end className={({ isActive }) => `nav-item ${isActive ? "nav-item--active" : ""}`}>
-            <span className="nav-mark" aria-hidden="true" />
-            <span className="nav-label">Home</span>
-          </NavLink>
+        <nav
+          className="fixed inset-x-6 max-[560px]:inset-x-3 bottom-4 max-[560px]:bottom-3 h-16 pb-[env(safe-area-inset-bottom)] flex items-stretch justify-around border border-white/60 rounded-full bg-white/55 backdrop-blur-[32px] shadow-ethereal-lg z-40"
+          aria-label="Primary navigation"
+        >
           <NavLink
-            to="/practice/setup"
-            className={({ isActive }) => `nav-item ${isActive ? "nav-item--active" : ""}`}
+            to="/"
+            end
+            viewTransition
+            className={({ isActive }) =>
+              cn(
+                "flex-1 flex flex-col items-center justify-center gap-1 no-underline font-ui transition-colors duration-300",
+                isActive ? "text-teal-700" : "text-ink-400",
+              )
+            }
           >
-            <span className="nav-mark" aria-hidden="true" />
-            <span className="nav-label">Record</span>
+            {({ isActive }) => (
+              <>
+                <span
+                  className={cn(
+                    "text-[0.6rem] transition-transform duration-300",
+                    isActive && "text-teal-500 scale-[1.3]",
+                  )}
+                  aria-hidden="true"
+                >
+                  ●
+                </span>
+                <span className="text-[0.68rem] font-medium tracking-wide">
+                  Practice
+                </span>
+              </>
+            )}
           </NavLink>
           <NavLink
             to="/library"
-            className={({ isActive }) => `nav-item ${isActive ? "nav-item--active" : ""}`}
+            viewTransition
+            className={({ isActive }) =>
+              cn(
+                "flex-1 flex flex-col items-center justify-center gap-1 no-underline font-ui transition-colors duration-300",
+                isActive ? "text-teal-700" : "text-ink-400",
+              )
+            }
           >
-            <span className="nav-mark" aria-hidden="true" />
-            <span className="nav-label">Library</span>
+            {({ isActive }) => (
+              <>
+                <span
+                  className={cn(
+                    "text-[0.6rem] transition-transform duration-300",
+                    isActive && "text-teal-500 scale-[1.3]",
+                  )}
+                  aria-hidden="true"
+                >
+                  ▪
+                </span>
+                <span className="text-[0.68rem] font-medium tracking-wide">
+                  Archive
+                </span>
+              </>
+            )}
           </NavLink>
           <NavLink
             to="/settings"
-            className={({ isActive }) => `nav-item ${isActive ? "nav-item--active" : ""}`}
+            viewTransition
+            className={({ isActive }) =>
+              cn(
+                "flex-1 flex flex-col items-center justify-center gap-1 no-underline font-ui transition-colors duration-300",
+                isActive ? "text-teal-700" : "text-ink-400",
+              )
+            }
           >
-            <span className="nav-mark" aria-hidden="true" />
-            <span className="nav-label">Settings</span>
+            {({ isActive }) => (
+              <>
+                <span
+                  className={cn(
+                    "text-[0.6rem] transition-transform duration-300",
+                    isActive && "text-teal-500 scale-[1.3]",
+                  )}
+                  aria-hidden="true"
+                >
+                  ◦
+                </span>
+                <span className="text-[0.68rem] font-medium tracking-wide">
+                  Settings
+                </span>
+              </>
+            )}
           </NavLink>
         </nav>
       )}
