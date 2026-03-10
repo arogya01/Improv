@@ -1,4 +1,5 @@
-export { HomePage } from "./HomePage";
+export { LandingPage } from "./LandingPage";
+export { SessionsTab } from "./SessionsTab";
 export { PracticeSessionPage } from "./PracticeSessionPage";
 export { LibraryPage } from "./LibraryPage";
 export { SessionDetailPage } from "./SessionDetailPage";

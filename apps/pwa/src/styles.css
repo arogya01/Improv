@@ -36,33 +36,7 @@ html {
   overflow: hidden;
 }
 
-/* ─── Ambient Background Gradients (ethereal) ─── */
-#root::before,
-#root::after {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-  z-index: 0;
-  border-radius: 50%;
-}
-
-#root::before {
-  top: -10%;
-  left: -10%;
-  width: 60vw;
-  height: 60vw;
-  background: color-mix(in srgb, var(--indigo-200) 30%, transparent);
-  filter: blur(140px);
-}
-
-#root::after {
-  bottom: -20%;
-  right: -10%;
-  width: 70vw;
-  height: 70vw;
-  background: color-mix(in srgb, var(--teal-200) 30%, transparent);
-  filter: blur(160px);
-}
+/* ─── Ambient Background Gradients Removed for Ethereal Japandi Look ─── */
 
 body ::selection {
   background: color-mix(in srgb, var(--teal-500) 20%, transparent);

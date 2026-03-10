@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import { AppShell } from "./layouts/AppShell";
 import {
-  HomePage,
+  LandingPage,
+  SessionsTab,
   PracticeSessionPage,
   LibraryPage,
   SessionDetailPage,
@@ -12,12 +13,16 @@ import {
 export const router = createBrowserRouter([
   {
     path: "/",
+    element: <LandingPage />,
+  },
+  {
+    path: "/app",
     element: <AppShell />,
     children: [
-      { index: true, element: <HomePage /> },
+      { index: true, element: <SessionsTab /> },
       { path: "practice/session", element: <PracticeSessionPage /> },
-      { path: "library", element: <LibraryPage /> },
-      { path: "library/:id", element: <SessionDetailPage /> },
+      { path: "archive", element: <LibraryPage /> },
+      { path: "archive/:id", element: <SessionDetailPage /> },
       { path: "settings", element: <SettingsPage /> },
     ],
   },

@@ -4,7 +4,7 @@ import { cn } from "../../lib/utils";
 
 export const AppShell: React.FC = () => {
   const location = useLocation();
-  const isSessionRoute = location.pathname === "/practice/session";
+  const isSessionRoute = location.pathname === "/app/practice/session";
 
   return (
     <div
@@ -25,7 +25,7 @@ export const AppShell: React.FC = () => {
           aria-label="Primary navigation"
         >
           <NavLink
-            to="/"
+            to="/app"
             end
             viewTransition
             className={({ isActive }) =>
@@ -53,7 +53,7 @@ export const AppShell: React.FC = () => {
             )}
           </NavLink>
           <NavLink
-            to="/library"
+            to="/app/archive"
             viewTransition
             className={({ isActive }) =>
               cn(
@@ -80,7 +80,7 @@ export const AppShell: React.FC = () => {
             )}
           </NavLink>
           <NavLink
-            to="/settings"
+            to="/app/settings"
             viewTransition
             className={({ isActive }) =>
               cn(
