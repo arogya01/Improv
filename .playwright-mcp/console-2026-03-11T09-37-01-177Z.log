@@ -1,0 +1,20 @@
+[ 3673051ms] [WARNING] No routes matched location "/library"  @ http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=c06516f7:647
+[ 3673051ms] [WARNING] No routes matched location "/library"  @ http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=c06516f7:647
+[ 3673114ms] [WARNING] THREE.THREE.Clock: This module has been deprecated. Please use THREE.Timer instead. @ http://localhost:5173/node_modules/.vite/deps/chunk-U5TGHTUI.js?v=c06516f7:745
+[ 3764455ms] [WARNING] No routes matched location "/library/2450cd53-f006-476e-9350-1c888b896d7b"  @ http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=c06516f7:647
+[ 3764455ms] [WARNING] No routes matched location "/library/2450cd53-f006-476e-9350-1c888b896d7b"  @ http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=c06516f7:647
+[ 3764514ms] [WARNING] THREE.THREE.Clock: This module has been deprecated. Please use THREE.Timer instead. @ http://localhost:5173/node_modules/.vite/deps/chunk-U5TGHTUI.js?v=c06516f7:745
+[ 4070706ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/pages/PracticeSessionPage.tsx?t=1773225891865:0
+[ 4070707ms] [ERROR] [hmr] Failed to reload /src/pages/PracticeSessionPage.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:175
+[ 4155054ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/pages/LibraryPage.tsx?t=1773225976192:0
+[ 4155056ms] [ERROR] [hmr] Failed to reload /src/pages/LibraryPage.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:175
+[ 4590846ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/pages/LibraryPage.tsx?t=1773225976192:0
+[ 4592211ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/pages/LibraryPage.tsx?t=1773225976192:0
+[ 4592714ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/pages/LibraryPage.tsx?t=1773225976192:0
+[ 4593006ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/pages/LibraryPage.tsx?t=1773225976192:0
+[ 4593232ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/pages/LibraryPage.tsx?t=1773225976192:0
+[ 4593461ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/pages/LibraryPage.tsx?t=1773225976192:0
+[ 4676400ms] [ERROR] SyntaxError: The requested module '/node_modules/.vite/deps/framer-motion.js?v=c06516f7' does not provide an export named 'Variants' @ http://localhost:5173/@vite/client:173
+[ 4676401ms] [ERROR] [hmr] Failed to reload /src/pages/LibraryPage.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:175
+[ 4708650ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/pages/SessionDetailPage.tsx?t=1773226529795:0
+[ 4708650ms] [ERROR] [hmr] Failed to reload /src/pages/SessionDetailPage.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:175

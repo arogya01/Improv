@@ -2,6 +2,16 @@ import React, { startTransition, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "iconify-icon": React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        icon: string;
+        inline?: boolean;
+      };
+    }
+  }
+}
 import { usePracticeSetup } from "../features/practice";
 import { useTopicRoulette } from "../features/topics";
 import { TopicSlotReel } from "../components/roulette/TopicSlotReel";
@@ -90,7 +100,7 @@ export const SessionsTab: React.FC = () => {
             className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-widest text-gray-400 hover:text-gray-900 transition-colors duration-300 disabled:opacity-50"
             title="Shuffle Topic"
           >
-            <iconify-icon icon="solar:refresh-circle-linear" style={{ fontSize: '1rem' }} />
+            <span className="iconify" data-icon="solar:refresh-circle-linear" style={{ fontSize: '1rem' }} />
             <span>Shuffle</span>
           </button>
         </div>
@@ -107,9 +117,9 @@ export const SessionsTab: React.FC = () => {
             )}
           >
             <div className="absolute inset-0 rounded-full bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <iconify-icon
-              icon={isLaunching ? "solar:loading-linear" : "solar:microphone-3-bold"}
-              className={cn("text-3xl transition-transform duration-500", isLaunching ? "animate-spin" : "group-hover:scale-110")}
+            <span
+              className={cn("iconify text-3xl transition-transform duration-500", isLaunching ? "animate-spin" : "group-hover:scale-110")}
+              data-icon={isLaunching ? "solar:loading-linear" : "solar:microphone-3-bold"}
             />
             {/* Minimal text indicator below */}
             <span className="absolute -bottom-8 text-[0.65rem] font-semibold text-gray-400 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none">

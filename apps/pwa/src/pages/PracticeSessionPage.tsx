@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-
 import {
   usePracticeSetup,
   useRecordingSession,
@@ -24,7 +23,7 @@ export const PracticeSessionPage: React.FC = () => {
       recordingService,
       authState: { status: "guest" },
       onSaved: () => {
-        setTimeout(() => navigate("/library"), 1200);
+        setTimeout(() => navigate("/app/archive"), 1200);
       },
     });
 
@@ -58,7 +57,7 @@ export const PracticeSessionPage: React.FC = () => {
   };
 
   const toggleRecording = () => {
-    if (vm.status === "ready" || vm.status === "idle" || vm.status === "setup") {
+    if (vm.status === "ready" || vm.status === "idle") {
       // It might be in an initial state depending on the exact state machine
       playSoundNudge("start");
       startRecording();
@@ -100,7 +99,7 @@ export const PracticeSessionPage: React.FC = () => {
           onClick={handleCancel}
           aria-label="Cancel"
         >
-          <iconify-icon icon="solar:close-circle-linear" className="text-[1.75rem]" />
+          <span className="iconify text-[1.75rem]" data-icon="solar:close-circle-linear"></span>
         </button>
 
         <button
@@ -112,10 +111,10 @@ export const PracticeSessionPage: React.FC = () => {
           onClick={toggleRecording}
           aria-label={isRecording ? "Stop Recording" : "Start Recording"}
         >
-          <iconify-icon 
-            icon={isRecording ? "solar:stop-circle-linear" : "solar:microphone-3-linear"} 
-            className="text-[1.5rem]" 
-          />
+          <span 
+            className="iconify text-[1.5rem]" 
+            data-icon={isRecording ? "solar:stop-circle-linear" : "solar:microphone-3-linear"}
+          ></span>
           {isRecording && (
              <span className="absolute top-0 right-0 w-3 h-3 bg-teal-500 rounded-full shadow-[0_0_8px_rgba(20,184,166,0.5)] animate-pulse" />
           )}
@@ -131,7 +130,7 @@ export const PracticeSessionPage: React.FC = () => {
 
           {vm.status === "saved" && (
             <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
-              <iconify-icon icon="solar:check-circle-linear" className="text-5xl text-teal-600" />
+              <span className="iconify text-5xl text-teal-600" data-icon="solar:check-circle-linear"></span>
             </motion.div>
           )}
 

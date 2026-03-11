@@ -5,7 +5,7 @@ export function useAudioVolume(stream: MediaStream | null | undefined, smoothing
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const sourceRef = useRef<MediaStreamAudioSourceNode | null>(null);
-  const requestRef = useRef<number>();
+  const requestRef = useRef<number>(0);
 
   useEffect(() => {
     if (!stream || stream.getAudioTracks().length === 0) {
@@ -34,7 +34,10 @@ export function useAudioVolume(stream: MediaStream | null | undefined, smoothing
         // Calculate RMS
         let sum = 0;
         for (let i = 0; i < dataArray.length; i++) {
-          sum += dataArray[i] * dataArray[i];
+          const val = dataArray[i];
+          if (val) {
+            sum += val * val;
+          }
         }
         const rms = Math.sqrt(sum / dataArray.length);
         
