@@ -62,6 +62,8 @@ export const ParticleOrb: React.FC<ParticleOrbProps> = ({
     let currentVolumeInfluence = 0;
     
     const render = (time: number) => {
+      // Ensure volume is a valid number, default to 0 to prevent NaN propagation
+      const safeVolume = Number.isFinite(volume) ? volume : 0;
       // Handle DPI scaling
       const dpr = window.devicePixelRatio || 1;
       const rect = canvas.getBoundingClientRect();
@@ -79,20 +81,21 @@ export const ParticleOrb: React.FC<ParticleOrbProps> = ({
       const centerY = rect.height / 2;
       
       // Smooth the volume transition heavily so it feels organic, not jittery
-      currentVolumeInfluence += (volume - currentVolumeInfluence) * 0.12;
+      currentVolumeInfluence += (safeVolume - currentVolumeInfluence) * 0.12;
+      if (!Number.isFinite(currentVolumeInfluence)) currentVolumeInfluence = 0;
       
       // Clear canvas
       ctx.clearRect(0, 0, rect.width, rect.height);
       
       // Calculate dynamic radius expansion based on volume
-      // Expand up to 1.6x when very loud
-      const expansion = 1 + (currentVolumeInfluence * 0.6);
+      // Expand up to 2.5x when very loud for a more vibrant effect
+      const expansion = 1 + (currentVolumeInfluence * 1.5);
       
       // Draw particles
       const particles = particlesRef.current;
       const timeSlow = time * 0.001;
       
-      ctx.fillStyle = '#dca52d'; // Golden base color
+      ctx.fillStyle = '#38bdf8'; // Sky blue base color
       
       particles.forEach(p => {
         // Update angle for slow rotation
@@ -134,10 +137,10 @@ export const ParticleOrb: React.FC<ParticleOrbProps> = ({
     <div className={`relative flex items-center justify-center ${className}`}>
         {/* Soft glow behind the canvas to match the ethereal aesthetic */}
         <div 
-          className="absolute inset-0 rounded-full blur-[30px] opacity-15 transition-transform duration-300 ease-out pointer-events-none"
+          className="absolute inset-0 rounded-full blur-[30px] opacity-20 transition-transform duration-300 ease-out pointer-events-none"
           style={{ 
-             background: 'radial-gradient(circle, rgba(220, 165, 45, 0.6) 0%, rgba(220, 165, 45, 0) 70%)',
-             transform: `scale(${1 + volume * 0.4})`
+             background: 'radial-gradient(circle, rgba(56, 189, 248, 0.6) 0%, rgba(56, 189, 248, 0) 70%)',
+             transform: `scale(${1 + (Number.isFinite(volume) ? volume : 0) * 0.8})`
           }}
         />
         <canvas 

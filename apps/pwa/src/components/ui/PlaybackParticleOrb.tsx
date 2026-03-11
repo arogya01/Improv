@@ -77,8 +77,15 @@ export const PlaybackParticleOrb: React.FC<PlaybackParticleOrbProps> = ({
 
   const togglePlay = () => {
     if (audioRef.current) {
-      if (isPlaying) audioRef.current.pause();
-      else audioRef.current.play();
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play().catch((err) => {
+          console.error("Playback failed:", err);
+          setIsPlaying(false);
+          onPlayStateChange?.(false);
+        });
+      }
     }
   };
 

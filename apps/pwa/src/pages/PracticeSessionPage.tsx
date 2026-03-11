@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { X, Mic, Square } from "lucide-react";
 import {
   usePracticeSetup,
   useRecordingSession,
@@ -51,6 +52,38 @@ export const PracticeSessionPage: React.FC = () => {
 
   const volume = useAudioVolume(stream, 0.85);
 
+  const isRecording = vm.status === "recording";
+  const [recordingTime, setRecordingTime] = useState(0);
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isRecording) {
+      interval = setInterval(() => {
+        setRecordingTime((prev) => {
+          if (prev >= 60) {
+            clearInterval(interval);
+            playSoundNudge("stop");
+            stopRecording();
+            return 60;
+          }
+          return prev + 1;
+        });
+      }, 1000);
+    } else if (vm.status === "idle" || vm.status === "ready") {
+      setRecordingTime(0);
+    }
+    return () => clearInterval(interval);
+  }, [isRecording, stopRecording, vm.status]);
+
+  const maxTime = 60;
+  const timeRemaining = Math.max(0, maxTime - recordingTime);
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
+  };
+
   const handleCancel = () => {
     cancelRecording();
     navigate(-1);
@@ -66,8 +99,6 @@ export const PracticeSessionPage: React.FC = () => {
       stopRecording();
     }
   };
-
-  const isRecording = vm.status === "recording";
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-48px)] text-ink-800 relative overflow-hidden items-center justify-center bg-[#fafafc]">
@@ -85,11 +116,25 @@ export const PracticeSessionPage: React.FC = () => {
             </motion.h1>
           )}
         </AnimatePresence>
+        
+        {/* Timer Display */}
+        <AnimatePresence>
+          {isRecording && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="absolute top-16 left-1/2 -translate-x-1/2 font-ui text-sm font-medium tracking-wide text-ink-500 bg-white/60 backdrop-blur-md px-4 py-1.5 rounded-full shadow-sm border border-black/[0.03]"
+            >
+              {formatTime(timeRemaining)}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Main Orb */}
       <div className="relative w-64 h-64 flex items-center justify-center z-0 transition-opacity duration-700">
-        <ParticleOrb volume={isRecording ? volume : 0} baseRadius={45} />
+        <ParticleOrb volume={isRecording ? volume : 0} baseRadius={45} className="w-full h-full" />
       </div>
 
       {/* Bottom Controls */}
@@ -99,7 +144,7 @@ export const PracticeSessionPage: React.FC = () => {
           onClick={handleCancel}
           aria-label="Cancel"
         >
-          <span className="iconify text-[1.75rem]" data-icon="solar:close-circle-linear"></span>
+          <X className="w-7 h-7" />
         </button>
 
         <button
@@ -111,10 +156,7 @@ export const PracticeSessionPage: React.FC = () => {
           onClick={toggleRecording}
           aria-label={isRecording ? "Stop Recording" : "Start Recording"}
         >
-          <span 
-            className="iconify text-[1.5rem]" 
-            data-icon={isRecording ? "solar:stop-circle-linear" : "solar:microphone-3-linear"}
-          ></span>
+          {isRecording ? <Square className="w-6 h-6 fill-current" /> : <Mic className="w-6 h-6" />}
           {isRecording && (
              <span className="absolute top-0 right-0 w-3 h-3 bg-teal-500 rounded-full shadow-[0_0_8px_rgba(20,184,166,0.5)] animate-pulse" />
           )}
