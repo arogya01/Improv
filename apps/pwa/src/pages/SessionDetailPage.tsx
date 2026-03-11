@@ -121,7 +121,7 @@ export const SessionDetailPage: React.FC = () => {
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="flex justify-between items-center">
-        <Button variant="ghost" onClick={() => navigate("/library")}>
+        <Button variant="ghost" onClick={() => navigate("/app/archive")}>
           Back
         </Button>
         <Chip variant={status.variant}>{status.label}</Chip>

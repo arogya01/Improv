@@ -6,7 +6,6 @@ import {
   PracticeSessionPage,
   LibraryPage,
   SessionDetailPage,
-  SettingsPage,
   AuthPage,
   GlobalError,
 } from "../pages";

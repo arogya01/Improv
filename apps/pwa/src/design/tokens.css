@@ -47,9 +47,9 @@
   --status-error: #ef4444;
 
   /* ─── Typography ─── */
-  --font-ui: "Inter", sans-serif;
-  --font-headline: "Playfair Display", serif;
-  --font-body: "Inter", sans-serif;
+  --font-ui: "DM Sans", sans-serif;
+  --font-headline: "Fraunces", serif;
+  --font-body: "DM Sans", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
 
   /* ─── Spacing ─── */

@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
-import { Mic2, Library, Settings } from "lucide-react";
+import { Mic2, Library } from "lucide-react";
 import { cn } from "../../lib/utils";
 
 // --- Motion Tokens & Philosophy (from Design System) ---
@@ -93,7 +93,7 @@ export const AppShell: React.FC = () => {
           !isSessionRoute && "pb-[100px]", // extra padding for bottom sheet
         )}
       >
-        <div className="w-full mx-auto h-full pt-16">
+        <div className="w-full mx-auto mt-8">
           <Outlet />
         </div>
       </main>
@@ -116,6 +116,7 @@ export const AppShell: React.FC = () => {
           )}
           aria-label="Primary navigation"
         >
+          {[
             { to: "/app", label: "Practice", icon: Mic2, isEnd: true },
             {
               to: "/app/archive",
@@ -135,21 +136,11 @@ export const AppShell: React.FC = () => {
               >
                 {({ isActive }) => (
                   <>
-                    {/* Animated Background Pill */}
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeTabBackground"
-                        className="absolute inset-x-2 inset-y-3 bg-gray-100 rounded-2xl -z-10"
-                        initial={false}
-                        transition={motionTokens.spring.gentle}
-                      />
-                    )}
-
                     <motion.div
                       whileTap={{ scale: 0.95 }}
                       transition={motionTokens.spring.gentle}
                       className={cn(
-                        "flex flex-col items-center justify-center gap-1.5 transition-colors duration-300",
+                        "flex flex-col items-center justify-center gap-1.5 transition-colors duration-500",
                         isActive
                           ? "text-gray-900"
                           : "text-gray-400 group-hover:text-gray-600",
@@ -158,22 +149,32 @@ export const AppShell: React.FC = () => {
                     >
                       <div
                         className={cn(
-                          "transition-transform duration-300 origin-center text-current opacity-90",
-                          isActive && "opacity-100 scale-110",
+                          "transition-transform duration-500 origin-center text-current opacity-90",
+                          isActive && "opacity-100",
                         )}
                         aria-hidden="true"
                       >
-                        <Icon size={20} strokeWidth={isActive ? 2.5 : 2} />
+                        <Icon size={20} strokeWidth={isActive ? 2 : 1.5} />
                       </div>
                       <span
                         className={cn(
-                          "text-[0.65rem] tracking-wide transition-all duration-300",
+                          "text-[0.65rem] tracking-wide transition-all duration-500",
                           isActive ? "font-semibold" : "font-medium",
                         )}
                       >
                         {tab.label}
                       </span>
                     </motion.div>
+
+                    {/* Minimal Active Dot Indicator */}
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeTabDot"
+                        className="absolute bottom-2 w-1 h-1 bg-gray-900 rounded-full"
+                        initial={false}
+                        transition={motionTokens.spring.gentle}
+                      />
+                    )}
                   </>
                 )}
               </NavLink>

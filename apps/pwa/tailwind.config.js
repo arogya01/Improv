@@ -78,10 +78,10 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        ui: ["var(--font-ui)", "Inter", "sans-serif"],
-        headline: ["var(--font-headline)", "Playfair Display", "serif"],
-        body: ["var(--font-body)", "Inter", "sans-serif"],
-        mono: ["var(--font-mono)", "IBM Plex Mono", "monospace"],
+        ui: ["var(--font-ui)", '"DM Sans"', "sans-serif"],
+        headline: ["var(--font-headline)", '"Fraunces"', "serif"],
+        body: ["var(--font-body)", '"DM Sans"', "sans-serif"],
+        mono: ["var(--font-mono)", '"IBM Plex Mono"', "monospace"],
       },
       boxShadow: {
         ethereal: "var(--shadow-sm)",

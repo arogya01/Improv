@@ -4,56 +4,13 @@ import { motion } from "framer-motion";
 
 import { usePracticeSetup } from "../features/practice";
 import { useTopicRoulette } from "../features/topics";
-import { cn } from "../lib/utils"; // Assuming a typical shadcn/tailwind merge utility exists, if not I'll just use template literals.
-
-// Simple wave component imitating the reference image's soft organic timer/action cue.
-const OrganicWave = ({ isActive }: { isActive: boolean }) => (
-  <div className="relative w-full max-w-[200px] h-[40px] flex items-end justify-center overflow-hidden">
-    <svg
-      viewBox="0 0 200 40"
-      preserveAspectRatio="none"
-      className={cn(
-        "absolute bottom-0 w-full h-[30px] transition-all duration-1000 ease-out",
-        isActive ? "opacity-100 scale-y-100" : "opacity-30 scale-y-50",
-      )}
-    >
-      <path
-        d="M0,40 C50,40 70,5 100,5 C130,5 150,40 200,40 L200,40 L0,40 Z"
-        fill="none"
-        stroke="var(--ink-400)"
-        strokeWidth="0.5"
-        className="transition-all duration-1000 ease-out"
-      />
-      <path
-        d="M0,40 C60,40 80,15 100,15 C120,15 140,40 200,40 L200,40 L0,40 Z"
-        fill="none"
-        stroke="var(--ink-200)"
-        strokeWidth="1"
-        className="transition-all duration-1000 ease-out"
-      />
-    </svg>
-    {/* Subtle central dot matching the reference image */}
-    <motion.div
-      className="absolute bottom-5 w-1 h-1 rounded-full bg-ink-300"
-      animate={{
-        y: isActive ? [0, -4, 0] : 0,
-        opacity: isActive ? [0.4, 0.8, 0.4] : 0.4,
-      }}
-      transition={{
-        duration: 3,
-        repeat: Infinity,
-        ease: "easeInOut",
-      }}
-    />
-    <div className="absolute bottom-[2px] w-[1px] h-3 bg-ink-200" />
-  </div>
-);
+import { TopicSlotReel } from "../components/roulette/TopicSlotReel";
+import { cn } from "../lib/utils";
 
 export const SessionsTab: React.FC = () => {
   const navigate = useNavigate();
   const { draft, setSelectedTopic } = usePracticeSetup();
   const roulette = useTopicRoulette({ initialTopic: draft.selectedTopic });
-  const [isHovering, setIsHovering] = useState(false);
   const [isLaunching, setIsLaunching] = useState(false);
 
   useEffect(() => {
@@ -90,95 +47,82 @@ export const SessionsTab: React.FC = () => {
         }
       });
       setIsLaunching(false);
-    }, 300); // slightly longer pause to feel like a slow exhale
+    }, 300);
   };
 
-  const handleRespin = async (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleRespin = async (e?: React.MouseEvent) => {
+    e?.stopPropagation();
     const topic = await roulette.spin();
     setSelectedTopic(topic);
   };
 
-  const topicText =
-    draft.selectedTopic?.text ??
-    roulette.currentTopic?.text ??
-    "Tap to draw a topic";
-
   return (
-    <div className="flex flex-col items-center justify-between min-h-[100dvh] pt-[max(env(safe-area-inset-top),20vh)] pb-[max(env(safe-area-inset-bottom),8vh)] px-6 bg-white selection:bg-ink-100 selection:text-ink-900">
-      {/* Top spacer */}
-      <div className="flex-1" />
-
+    <div className="flex flex-col items-center justify-center h-full px-6 pb-24 bg-transparent selection:bg-stone-200 selection:text-stone-900 overflow-hidden">
       <motion.div
-        className="flex flex-col items-center max-w-[480px] w-full text-center"
-        initial={{ opacity: 0, y: 10 }}
+        className="flex flex-col items-center max-w-[480px] w-full text-center gap-12 md:gap-16"
+        initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
       >
-        {/* Main Prompt Area */}
-        <div className="relative w-full min-h-[220px] flex flex-col items-center justify-center">
-          <motion.div
-            className="flex flex-col items-center gap-2 w-full"
-            animate={{ opacity: isLaunching ? 0 : 1 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-          >
-            {/* Subtle Greeting like "Hey Natural," */}
-            <p className="m-0 text-xl font-light text-ink-300 tracking-wide select-none">
-              Daily Prompt,
-            </p>
-
-            {/* The Topic / Active Text. Strict text-balance. */}
-            <h1
-              onClick={handleRespin}
-              className={`
-                m-0 mt-4 text-[clamp(1.5rem,5vw,2.25rem)] font-normal text-ink-900 
-                leading-[1.3] text-balance tracking-tight cursor-pointer 
-                transition-opacity duration-300
-                ${roulette.isSpinning ? "opacity-30 blur-[2px]" : "opacity-100 blur-0"}
-              `}
-              title="Tap to draw a new topic"
-            >
-              {topicText}
-            </h1>
-
-            {/* Extremely subtle instructional text (text-pretty) */}
-            <p className="mt-6 text-sm font-light text-ink-400 text-pretty max-w-[28ch] select-none opacity-60">
-              Speak spontaneously for 60 seconds to build confidence.
-            </p>
-          </motion.div>
+        {/* Header Section */}
+        <div className="flex flex-col items-center gap-6 w-full">
+          <h1 className="font-headline text-4xl md:text-5xl font-medium tracking-tight text-gray-900 text-balance leading-[1.1]">
+            What will you speak about today?
+          </h1>
+          <p className="text-sm font-ui text-gray-500 max-w-[28ch] text-balance">
+            Allow your thoughts to run free. Select a topic, or let chance decide.
+          </p>
         </div>
-      </motion.div>
 
-      <div className="flex-1" />
+        {/* Central Topic Component */}
+        <div className="flex flex-col items-center gap-4 w-full">
+          <TopicSlotReel
+            sequence={roulette.spinSequence}
+            currentTopic={roulette.currentTopic}
+            isSpinning={roulette.isSpinning}
+            spinToken={roulette.spinToken}
+            className="w-full"
+          />
+          {/* Subtle Shuffle Button */}
+          <button
+            onClick={() => handleRespin()}
+            disabled={roulette.isSpinning}
+            className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-widest text-gray-400 hover:text-gray-900 transition-colors duration-300 disabled:opacity-50"
+            title="Shuffle Topic"
+          >
+            <iconify-icon icon="solar:refresh-circle-linear" style={{ fontSize: '1rem' }} />
+            <span>Shuffle</span>
+          </button>
+        </div>
 
-      {/* Bottom Action Area with Organic Wave */}
-      <motion.div
-        className="w-full flex justify-center mb-8"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
-        onHoverStart={() => setIsHovering(true)}
-        onHoverEnd={() => setIsHovering(false)}
-      >
-        <button
-          onClick={handleStart}
-          disabled={roulette.isSpinning || isLaunching}
-          aria-label="Start recording 60 second session"
-          className="group relative flex flex-col items-center gap-4 bg-transparent border-none cursor-pointer outline-none w-full max-w-[300px]"
-        >
-          {/* Subtle text cue */}
-          <span
+        {/* Action Section */}
+        <div className="flex flex-col items-center gap-6 w-full mt-4">
+          <button
+            onClick={handleStart}
+            disabled={roulette.isSpinning || isLaunching}
             className={cn(
-              "text-[0.7rem] uppercase tracking-[0.2em] transition-all duration-500",
-              isHovering ? "text-ink-800" : "text-ink-300",
+              "group relative flex items-center justify-center w-20 h-20 rounded-full transition-all duration-500",
+              "bg-gray-900 text-gray-50 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.16)] active:scale-95",
+              "disabled:bg-gray-200 disabled:text-gray-400 disabled:shadow-none disabled:cursor-not-allowed"
             )}
           >
-            {isLaunching ? "Beginning" : "Press to Begin"}
-          </span>
+            <div className="absolute inset-0 rounded-full bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <iconify-icon
+              icon={isLaunching ? "solar:loading-linear" : "solar:microphone-3-bold"}
+              className={cn("text-3xl transition-transform duration-500", isLaunching ? "animate-spin" : "group-hover:scale-110")}
+            />
+            {/* Minimal text indicator below */}
+            <span className="absolute -bottom-8 text-[0.65rem] font-semibold text-gray-400 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none">
+              {isLaunching ? "Preparing" : "Record"}
+            </span>
+          </button>
 
-          <OrganicWave isActive={isHovering || isLaunching} />
-        </button>
+          <p className="mt-8 text-sm font-light text-gray-400 italic max-w-[28ch] select-none text-balance">
+            Speak spontaneously for 60 seconds to build mental agility.
+          </p>
+        </div>
       </motion.div>
     </div>
   );
 };
+

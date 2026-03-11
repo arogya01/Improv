@@ -70,7 +70,10 @@ export class MediaCaptureAdapter {
     stop(): Promise<{ blob: Blob; mimeType: string }> {
         return new Promise((resolve, reject) => {
             if (!this.mediaRecorder) {
-                return reject(new Error("MediaRecorder not initialized"));
+                // If it was never initialized, just return an empty blob so the session can "save" nothing
+                // gracefully rather than bubbling an unhandled promise rejection to the UI
+                const mimeType = "application/octet-stream";
+                return resolve({ blob: new Blob([], { type: mimeType }), mimeType });
             }
 
             this.mediaRecorder.onstop = () => {
