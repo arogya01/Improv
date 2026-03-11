@@ -72,17 +72,17 @@ export const SettingsPage: React.FC = () => {
 
   return (
     <motion.div
-      className="w-full max-w-[1100px] mx-auto min-h-[calc(100vh-76px)] p-[clamp(2rem,4vw,3rem)] px-4 pb-[calc(112px+env(safe-area-inset-bottom))] grid gap-4"
+      className="w-full max-w-7xl mx-auto min-h-[calc(100vh-76px)] p-[clamp(2rem,4vw,3rem)] px-4 pb-[calc(112px+env(safe-area-inset-bottom))] grid gap-8"
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="flex justify-between gap-4 items-start max-[700px]:flex-col">
+      <div className="flex justify-between gap-4 items-start max-[700px]:flex-col border-b border-gray-200/60 pb-8">
         <div>
-          <h2 className="m-0 font-headline text-[clamp(2.3rem,5vw,4rem)] tracking-tighter leading-none">
+          <h2 className="m-0 font-headline text-[clamp(2.6rem,5vw,4.4rem)] font-medium tracking-tight leading-none text-gray-900">
             Settings
           </h2>
-          <p className="mt-3 mb-0 text-ink-700 max-w-[52ch] leading-relaxed">
+          <p className="mt-4 mb-0 text-gray-600 font-ui text-lg leading-relaxed max-w-[52ch]">
             Storage & sync diagnostics.
           </p>
         </div>
@@ -95,69 +95,82 @@ export const SettingsPage: React.FC = () => {
         </Button>
       </div>
 
-      <Card className="grid gap-3">
-        <div className="flex justify-between items-center gap-3">
-          <h3 className="m-0 font-headline text-[1.55rem] tracking-tight">
-            Storage
-          </h3>
-          <Chip variant="default">Local</Chip>
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Card className="grid gap-5 rounded-[24px] bg-white/50 border border-gray-200/50 p-6 shadow-sm">
+          <div className="flex justify-between items-start gap-3">
+            <h3 className="m-0 font-headline text-[1.6rem] leading-tight font-medium tracking-tight text-gray-900">
+              Storage
+            </h3>
+            <Chip variant="default" className="shrink-0">
+              Local
+            </Chip>
+          </div>
 
-        <div className="flex justify-between gap-2 text-[0.95rem] pb-3 border-b border-[var(--line-soft)]">
-          <span className="text-ink-700">Used</span>
-          <strong>{formatMegabytes(storage.usedBytes)}</strong>
-        </div>
-        <div className="flex justify-between gap-2 text-[0.95rem] pb-3 border-b border-[var(--line-soft)]">
-          <span className="text-ink-700">Quota</span>
-          <strong>{formatMegabytes(storage.quotaBytes)}</strong>
-        </div>
-      </Card>
+          <div className="flex justify-between gap-2 text-[0.95rem] pb-3 border-b border-gray-200/60 font-ui text-gray-900">
+            <span className="text-gray-500 font-medium">Used</span>
+            <strong>{formatMegabytes(storage.usedBytes)}</strong>
+          </div>
+          <div className="flex justify-between gap-2 text-[0.95rem] py-1 font-ui text-gray-900">
+            <span className="text-gray-500 font-medium">Quota</span>
+            <strong>{formatMegabytes(storage.quotaBytes)}</strong>
+          </div>
+        </Card>
 
-      <Card className="grid gap-3">
-        <div className="flex justify-between items-center gap-3">
-          <h3 className="m-0 font-headline text-[1.55rem] tracking-tight">
-            Sync Queue
-          </h3>
-          <Chip variant={queue.total > 0 ? "warning" : "success"}>
-            {queue.total > 0 ? "Pending" : "Idle"}
-          </Chip>
-        </div>
+        <Card className="grid gap-4 rounded-[24px] bg-white/50 border border-gray-200/50 p-6 shadow-sm">
+          <div className="flex justify-between items-start gap-3 mb-2">
+            <h3 className="m-0 font-headline text-[1.6rem] leading-tight font-medium tracking-tight text-gray-900">
+              Sync Queue
+            </h3>
+            <Chip
+              variant={queue.total > 0 ? "warning" : "success"}
+              className="shrink-0"
+            >
+              {queue.total > 0 ? "Pending" : "Idle"}
+            </Chip>
+          </div>
 
-        <div className="flex justify-between gap-2 text-[0.95rem] pb-3 border-b border-[var(--line-soft)]">
-          <span className="text-ink-700">Total items</span>
-          <strong>{queue.total}</strong>
-        </div>
-        <div className="flex justify-between gap-2 text-[0.95rem] pb-3 border-b border-[var(--line-soft)]">
-          <span className="text-ink-700">Due now</span>
-          <strong>{queue.dueNow}</strong>
-        </div>
-        <div className="flex justify-between gap-2 text-[0.95rem] pb-3 border-b border-[var(--line-soft)]">
-          <span className="text-ink-700">Upload</span>
-          <strong>{queue.upload}</strong>
-        </div>
-        <div className="flex justify-between gap-2 text-[0.95rem] pb-3 border-b border-[var(--line-soft)]">
-          <span className="text-ink-700">Finalize upload</span>
-          <strong>{queue.finalizeUpload}</strong>
-        </div>
-        <div className="flex justify-between gap-2 text-[0.95rem] pb-3 border-b border-[var(--line-soft)]">
-          <span className="text-ink-700">Delete cloud</span>
-          <strong>{queue.deleteCloud}</strong>
-        </div>
-      </Card>
+          <div className="flex justify-between gap-2 text-[0.95rem] pb-3 border-b border-gray-200/60 font-ui text-gray-900">
+            <span className="text-gray-500 font-medium">Total items</span>
+            <strong>{queue.total}</strong>
+          </div>
+          <div className="flex justify-between gap-2 text-[0.95rem] pb-3 border-b border-gray-200/60 font-ui text-gray-900">
+            <span className="text-gray-500 font-medium">Due now</span>
+            <strong>{queue.dueNow}</strong>
+          </div>
+          <div className="flex justify-between gap-2 text-[0.95rem] pb-3 border-b border-gray-200/60 font-ui text-gray-900">
+            <span className="text-gray-500 font-medium">Upload</span>
+            <strong>{queue.upload}</strong>
+          </div>
+          <div className="flex justify-between gap-2 text-[0.95rem] pb-3 border-b border-gray-200/60 font-ui text-gray-900">
+            <span className="text-gray-500 font-medium">Finalize upload</span>
+            <strong>{queue.finalizeUpload}</strong>
+          </div>
+          <div className="flex justify-between gap-2 text-[0.95rem] py-1 font-ui text-gray-900">
+            <span className="text-gray-500 font-medium">Delete cloud</span>
+            <strong>{queue.deleteCloud}</strong>
+          </div>
+        </Card>
 
-      <Card className="grid gap-3">
-        <div className="flex justify-between items-center gap-3">
-          <h3 className="m-0 font-headline text-[1.55rem] tracking-tight">
-            Cloud Backup
-          </h3>
-          <Chip variant="info">Coming Soon</Chip>
-        </div>
+        <Card className="grid gap-4 rounded-[24px] bg-white/50 border border-gray-200/50 p-6 shadow-sm">
+          <div className="flex justify-between items-start gap-3">
+            <h3 className="m-0 font-headline text-[1.6rem] leading-tight font-medium tracking-tight text-gray-900">
+              Cloud Backup
+            </h3>
+            <Chip
+              variant="info"
+              className="shrink-0 bg-gray-100 text-gray-600 border-none"
+            >
+              Coming Soon
+            </Chip>
+          </div>
 
-        <p className="m-0 text-ink-700 leading-relaxed">
-          Cloud auth and background upload will be layered in next. Local-first
-          recording and playback already work without any backend dependency.
-        </p>
-      </Card>
+          <p className="m-0 text-gray-600 font-ui leading-relaxed">
+            Cloud auth and background upload will be layered in next.
+            Local-first recording and playback already work without any backend
+            dependency.
+          </p>
+        </Card>
+      </div>
     </motion.div>
   );
 };

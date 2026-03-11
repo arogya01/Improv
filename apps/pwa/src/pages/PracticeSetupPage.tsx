@@ -94,31 +94,33 @@ export const PracticeSetupPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-76px)] p-[clamp(2rem,4vw,3rem)] px-4 pb-[calc(3rem+92px)] relative overflow-hidden bg-transparent">
+    <div className="min-h-[calc(100vh-76px)] p-[clamp(1rem,4vw,3rem)] pb-[calc(3rem+92px)] relative overflow-hidden bg-transparent">
       <motion.div
-        className="relative z-10 w-full max-w-[640px] mx-auto bg-white/35 backdrop-blur-[32px] border border-white/50 rounded-3xl shadow-ethereal-lg p-[clamp(1.5rem,4vw,2.5rem)] grid gap-6"
+        className="relative z-10 w-full max-w-4xl mx-auto bg-white/40 backdrop-blur-[40px] border border-white/60 rounded-[32px] shadow-[0_32px_80px_rgba(0,0,0,0.03)] p-[clamp(2.5rem,6vw,4rem)] grid gap-10"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         <motion.div
           variants={itemVariants}
-          className="flex items-start justify-between gap-3"
+          className="flex items-start justify-between gap-3 border-b border-gray-200/50 pb-6"
         >
-          <h1 className="m-0 font-headline text-[clamp(2.4rem,6vw,3.7rem)] tracking-tight font-normal leading-tight text-ink-900">
+          <h1 className="m-0 font-headline text-[clamp(3rem,6vw,4.5rem)] tracking-tight font-medium leading-none text-gray-900">
             Session Format
           </h1>
-          <Chip variant="info">Topic</Chip>
+          <Chip variant="default" className="mt-2 hidden sm:inline-flex">
+            Practice
+          </Chip>
         </motion.div>
 
         <motion.div
           variants={itemVariants}
-          className="rounded-2xl border border-white/50 bg-white/35 p-6 shadow-ethereal relative overflow-hidden before:absolute before:inset-x-0 before:top-0 before:h-[2px] before:bg-gradient-to-r before:from-teal-300/60 before:to-indigo-200/40"
+          className="rounded-[24px] border border-white/80 bg-white/50 p-8 md:p-10 shadow-[0_12px_40px_rgba(0,0,0,0.02)] relative overflow-hidden"
         >
-          <div className="text-xs tracking-widest uppercase text-teal-700 font-semibold font-ui">
-            Selected Topic
+          <div className="text-xs tracking-widest uppercase text-gray-500 font-semibold font-ui mb-4">
+            Current Prompt
           </div>
-          <p className="my-3 mb-5 font-headline text-[clamp(1.5rem,4vw,2rem)] leading-snug font-normal text-ink-900 text-pretty">
+          <p className="my-0 mb-8 font-headline text-[clamp(2rem,4vw,2.8rem)] leading-snug font-medium text-gray-900 text-pretty max-w-[28ch]">
             {selectedTopicLabel}
           </p>
           <div className="flex justify-start">
@@ -131,74 +133,79 @@ export const PracticeSetupPage: React.FC = () => {
           </div>
         </motion.div>
 
-        <motion.div variants={itemVariants} className="grid gap-3">
-          <label className="text-xs font-semibold uppercase tracking-widest text-ink-600 font-ui">
-            Recording Type
-          </label>
-          <div className="grid grid-cols-2 gap-1.5 p-1.5 rounded-full border border-white/50 bg-white/30 backdrop-blur-[32px]">
-            <button
-              type="button"
-              onClick={() => setMediaType("video")}
-              className={`min-h-[3.1rem] border-0 rounded-full font-ui text-[0.95rem] font-medium transition-all duration-300 ease-out flex items-center justify-center ${
-                draft.mediaType === "video"
-                  ? "bg-white text-teal-900 shadow-sm"
-                  : "text-slate-600 bg-transparent hover:bg-white/30"
-              }`}
-            >
-              Video
-            </button>
-            <button
-              type="button"
-              onClick={() => setMediaType("audio")}
-              className={`min-h-[3.1rem] border-0 rounded-full font-ui text-[0.95rem] font-medium transition-all duration-300 ease-out flex items-center justify-center ${
-                draft.mediaType === "audio"
-                  ? "bg-white text-teal-900 shadow-sm"
-                  : "text-slate-600 bg-transparent hover:bg-white/30"
-              }`}
-            >
-              Audio
-            </button>
-          </div>
-        </motion.div>
-
-        {draft.mediaType === "video" && (
-          <motion.div variants={itemVariants} className="grid gap-3">
-            <label className="text-xs font-semibold uppercase tracking-widest text-ink-600 font-ui">
-              Camera
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+          <motion.div variants={itemVariants} className="grid gap-4">
+            <label className="text-xs font-semibold uppercase tracking-widest text-gray-500 font-ui">
+              Recording Type
             </label>
-            <div className="grid grid-cols-2 gap-1.5 p-1.5 rounded-full border border-white/80 bg-white/50 backdrop-blur-md">
+            <div className="grid grid-cols-2 gap-1.5 p-1.5 rounded-full border border-gray-200/60 bg-white/50 backdrop-blur-[32px]">
               <button
                 type="button"
-                onClick={() => setCameraFacing("user")}
-                className={`min-h-[3.1rem] border-0 rounded-full font-ui text-[0.95rem] font-medium transition-all duration-300 ease-out flex items-center justify-center ${
-                  draft.cameraFacing === "user"
-                    ? "bg-white text-teal-900 shadow-sm"
-                    : "text-slate-600 bg-transparent hover:bg-white/30"
+                onClick={() => setMediaType("video")}
+                className={`min-h-[3.5rem] border-0 rounded-full font-ui text-[0.95rem] font-medium transition-all duration-300 ease-out flex items-center justify-center ${
+                  draft.mediaType === "video"
+                    ? "bg-gray-900 text-gray-50 shadow-md"
+                    : "text-gray-500 bg-transparent hover:bg-gray-100"
                 }`}
               >
-                Front
+                Video
               </button>
               <button
                 type="button"
-                onClick={() => setCameraFacing("environment")}
-                className={`min-h-[3.1rem] border-0 rounded-full font-ui text-[0.95rem] font-medium transition-all duration-300 ease-out flex items-center justify-center ${
-                  draft.cameraFacing === "environment"
-                    ? "bg-white text-teal-900 shadow-sm"
-                    : "text-slate-600 bg-transparent hover:bg-white/30"
+                onClick={() => setMediaType("audio")}
+                className={`min-h-[3.5rem] border-0 rounded-full font-ui text-[0.95rem] font-medium transition-all duration-300 ease-out flex items-center justify-center ${
+                  draft.mediaType === "audio"
+                    ? "bg-gray-900 text-gray-50 shadow-md"
+                    : "text-gray-500 bg-transparent hover:bg-gray-100"
                 }`}
               >
-                Back
+                Audio
               </button>
             </div>
           </motion.div>
-        )}
 
-        <motion.div variants={itemVariants}>
+          {draft.mediaType === "video" && (
+            <motion.div variants={itemVariants} className="grid gap-4">
+              <label className="text-xs font-semibold uppercase tracking-widest text-gray-500 font-ui">
+                Camera View
+              </label>
+              <div className="grid grid-cols-2 gap-1.5 p-1.5 rounded-full border border-gray-200/60 bg-white/50 backdrop-blur-md">
+                <button
+                  type="button"
+                  onClick={() => setCameraFacing("user")}
+                  className={`min-h-[3.5rem] border-0 rounded-full font-ui text-[0.95rem] font-medium transition-all duration-300 ease-out flex items-center justify-center ${
+                    draft.cameraFacing === "user"
+                      ? "bg-gray-900 text-gray-50 shadow-md"
+                      : "text-gray-500 bg-transparent hover:bg-gray-100/50"
+                  }`}
+                >
+                  Front
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setCameraFacing("environment")}
+                  className={`min-h-[3.5rem] border-0 rounded-full font-ui text-[0.95rem] font-medium transition-all duration-300 ease-out flex items-center justify-center ${
+                    draft.cameraFacing === "environment"
+                      ? "bg-gray-900 text-gray-50 shadow-md"
+                      : "text-gray-500 bg-transparent hover:bg-gray-100/50"
+                  }`}
+                >
+                  Back
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </div>
+
+        <motion.div
+          variants={itemVariants}
+          className="pt-4 border-t border-gray-200/50"
+        >
           <motion.button
             whileTap={{ scale: 0.98 }}
             onClick={handleStart}
             disabled={roulette.isSpinning || isStarting}
-            className="w-full min-h-[4rem] rounded-full border border-teal-200/40 bg-gradient-to-r from-teal-50/80 to-indigo-50/80 text-teal-900 font-ui text-[1.06rem] font-medium tracking-tight cursor-pointer flex items-center justify-center gap-3 shadow-ethereal transition-all duration-300 hover:not-disabled:translate-y-[-1px] hover:not-disabled:shadow-ethereal-md hover:not-disabled:border-teal-300/60 hover:not-disabled:from-teal-50 hover:not-disabled:to-indigo-50 active:not-disabled:translate-y-0 disabled:bg-white/30 disabled:text-ink-400 disabled:cursor-not-allowed disabled:shadow-none disabled:border-ink-100"
+            className="w-full min-h-[4.5rem] rounded-full bg-gray-900 text-gray-50 font-ui text-[1.1rem] font-medium tracking-wide cursor-pointer flex items-center justify-center gap-3 shadow-md transition-all duration-300 hover:scale-[1.01] hover:shadow-lg disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed disabled:shadow-none"
           >
             {roulette.isSpinning ? "Drawing..." : "Start"}
             <motion.span

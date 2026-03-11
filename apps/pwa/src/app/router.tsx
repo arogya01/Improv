@@ -28,7 +28,6 @@ export const router = createBrowserRouter([
           { path: "practice/session", element: <PracticeSessionPage /> },
           { path: "archive", element: <LibraryPage /> },
           { path: "archive/:id", element: <SessionDetailPage /> },
-          { path: "settings", element: <SettingsPage /> },
         ],
       },
       { path: "auth", element: <AuthPage /> },

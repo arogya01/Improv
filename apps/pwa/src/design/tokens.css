@@ -105,4 +105,11 @@
     rgba(99, 102, 241, 0.06),
     transparent 70%
   );
+
+  /* ─── Editorial Palette ─── */
+  --editorial-cream: #faf8f5;
+  --editorial-warm-white: #fffefb;
+  --editorial-charcoal: #1a1a1a;
+  --editorial-warm-accent: #c45a3b;
+  --editorial-muted: #6b6b6b;
 }

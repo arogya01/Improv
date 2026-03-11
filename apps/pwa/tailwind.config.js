@@ -64,6 +64,13 @@ export default {
           500: "var(--indigo-500)",
           900: "var(--indigo-900)",
         },
+        editorial: {
+          cream: "var(--editorial-cream)",
+          "warm-white": "var(--editorial-warm-white)",
+          charcoal: "var(--editorial-charcoal)",
+          "warm-accent": "var(--editorial-warm-accent)",
+          muted: "var(--editorial-muted)",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
