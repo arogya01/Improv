@@ -67,9 +67,9 @@ export const SessionsTab: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full px-6 pb-24 bg-transparent selection:bg-stone-200 selection:text-stone-900 overflow-hidden">
+    <div className="flex flex-col items-center justify-center h-full px-6 pb-20 bg-transparent selection:bg-stone-200 selection:text-stone-900 overflow-hidden">
       <motion.div
-        className="flex flex-col items-center max-w-[480px] w-full text-center gap-12 md:gap-16"
+        className="flex flex-col items-center max-w-[480px] w-full text-center gap-8 md:gap-10"
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
@@ -93,20 +93,28 @@ export const SessionsTab: React.FC = () => {
             spinToken={roulette.spinToken}
             className="w-full"
           />
-          {/* Subtle Shuffle Button */}
-          <button
+          {/* Shuffle Button */}
+          <motion.button
             onClick={() => handleRespin()}
             disabled={roulette.isSpinning}
-            className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-widest text-gray-400 hover:text-gray-900 transition-colors duration-300 disabled:opacity-50"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            className={cn(
+              "flex items-center gap-2 px-5 py-2.5 rounded-full",
+              "font-ui text-sm font-medium tracking-wide",
+              "text-gray-500 bg-gray-100/80 hover:bg-gray-200/80 hover:text-gray-900",
+              "border border-gray-200/60",
+              "transition-all duration-300 disabled:opacity-40 disabled:pointer-events-none",
+            )}
             title="Shuffle Topic"
           >
-            <span className="iconify" data-icon="solar:refresh-circle-linear" style={{ fontSize: '1rem' }} />
+            <iconify-icon icon="solar:refresh-circle-linear" style={{ fontSize: '1.1rem' }} />
             <span>Shuffle</span>
-          </button>
+          </motion.button>
         </div>
 
         {/* Action Section */}
-        <div className="flex flex-col items-center gap-6 w-full mt-4">
+        <div className="flex flex-col items-center gap-5 w-full">
           <button
             onClick={handleStart}
             disabled={roulette.isSpinning || isLaunching}
@@ -127,7 +135,7 @@ export const SessionsTab: React.FC = () => {
             </span>
           </button>
 
-          <p className="mt-8 text-sm font-light text-gray-400 italic max-w-[28ch] select-none text-balance">
+          <p className="mt-4 text-sm font-light text-gray-400 italic max-w-[28ch] select-none text-balance">
             Speak spontaneously for 60 seconds to build mental agility.
           </p>
         </div>

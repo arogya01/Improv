@@ -27,6 +27,7 @@ export const AppShell: React.FC = () => {
   const location = useLocation();
   const prefersReducedMotion = useReducedMotion();
   const isSessionRoute = location.pathname === "/app/practice/session";
+  const isPracticeHome = location.pathname === "/app" || location.pathname === "/app/";
 
   // TODO: Replace with actual state selector when wiring up the store
   const isRecording = false;
@@ -89,11 +90,12 @@ export const AppShell: React.FC = () => {
 
       <main
         className={cn(
-          "flex-1 overflow-y-auto relative scroll-smooth z-10",
+          "flex-1 relative scroll-smooth z-10",
+          isPracticeHome ? "overflow-hidden" : "overflow-y-auto",
           !isSessionRoute && "pb-[100px]", // extra padding for bottom sheet
         )}
       >
-        <div className="w-full mx-auto mt-8">
+        <div className={cn("w-full mx-auto", isPracticeHome ? "h-full" : "mt-8")}>
           <Outlet />
         </div>
       </main>
